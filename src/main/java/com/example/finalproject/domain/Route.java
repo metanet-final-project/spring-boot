@@ -7,10 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Terminal {
+public class Route {
 
     private int id;
-    private String name;
-    private String location;
-
+    private int start_id;
+    private int end_id;
+    private int travel_time;
 }
