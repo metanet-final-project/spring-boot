@@ -137,3 +137,45 @@ create table booking(
  CONSTRAINT booking_fk FOREIGN KEY(schedule_id, route_id) REFERENCES schedule(id, route_id)
 
 );
+
+-- MEMBER 테이블용 시퀀스 생성
+CREATE SEQUENCE seq_member;
+
+-- NON_MEMBER 테이블용 시퀀스 생성
+CREATE SEQUENCE seq_non_member;
+
+-- NOTICE 테이블용 시퀀스 생성
+CREATE SEQUENCE seq_notice;
+
+-- NOTEBOX 테이블용 시퀀스 생성
+CREATE SEQUENCE seq_notebox;
+
+-- COMPANY 테이블용 시퀀스 생성
+CREATE SEQUENCE seq_company;
+
+-- TERMINAL 테이블용 시퀀스 생성
+CREATE SEQUENCE seq_terminal;
+
+-- BUS 테이블용 시퀀스 생성
+CREATE SEQUENCE seq_bus;
+
+-- ROUTE 테이블용 시퀀스 생성
+CREATE SEQUENCE seq_route;
+
+-- MYROUTE 테이블용 시퀀스 생성
+CREATE SEQUENCE seq_myroute;
+
+-- SCHEDULE 테이블용 시퀀스 생성
+--CREATE SEQUENCE seq_schedule;
+
+-- WAITING 테이블용 시퀀스 생성
+CREATE SEQUENCE seq_waiting;
+
+-- AGE 테이블용 시퀀스 생성
+CREATE SEQUENCE seq_age;
+
+-- PAY 테이블용 시퀀스 생성
+CREATE SEQUENCE seq_pay;
+
+-- BOOKING 테이블용 시퀀스 생성
+CREATE SEQUENCE seq_booking;
