@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.finalproject.mapper.CompanyMapper">
+
+    <insert id="save" parameterType="com.example.finalproject.domain.Company">
+        INSERT INTO company VALUES(
+            seq_company.nextval, #{name}, #{phone})
+    </insert>
+
+    <select id="findAll" resultType="com.example.finalproject.domain.Company" >
+        SELECT * FROM company
+    </select>
+
+    <update id="update" parameterType="com.example.finalproject.domain.Company">
+        UPDATE company SET name = #{name}, phone = #{phone} WHERE id = #{id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM company WHERE id = #{id}
+    </delete>
+
+</mapper>
