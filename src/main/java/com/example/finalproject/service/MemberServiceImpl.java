@@ -11,8 +11,12 @@ public class MemberServiceImpl implements MemberService {
     private MemberMapper memberMapper;
 
     @Override
-    public int save(Member member) {
-        return memberMapper.save(member);
+    public int save(Member member) throws Exception{
+        try {
+
+        } catch (Exception e){
+
+        }
     }
 
     @Override

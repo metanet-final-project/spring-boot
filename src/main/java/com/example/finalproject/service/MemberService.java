@@ -5,7 +5,7 @@ import com.example.finalproject.mapper.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public interface MemberService {
-    int save(Member member);
+    int save(Member member) throws Exception;
 
     Member findById(int memberId);
 
