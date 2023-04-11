@@ -39,7 +39,7 @@
         where id = #{id}
     </select>
 
-    <select id="findByNonMemberId" resultMap="com.example.finalproject.domain.Booking">
+    <select id="findByNonMemberId" resultType="com.example.finalproject.domain.Booking">
         select * from booking
         where non_member_id = #{id};
     </select>
