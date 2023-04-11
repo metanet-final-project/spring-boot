@@ -13,3 +13,7 @@ mybatis:
   type-aliases-package: com.example.finalproject.domain
   configuration:
     map-underscore-to-camel-case: true
+
+jwt:
+  secret:
+    key: 2s5v8y/B?E(H+MbQeThWmZq4t6w9z$C&

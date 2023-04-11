@@ -21,16 +21,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Member member = memberService.findByLoginId(username);
-        return new User(member.getLoginId(), member.getPassword(), getAuthoritiesList(member.getRole()));
+        return new CustomUserDetails(member);
     }
 
-    private List<SimpleGrantedAuthority> getAuthoritiesList(String roleString){
-        List<SimpleGrantedAuthority> authorityList = new ArrayList<>();
-        String[] userRoles = roleString.split(",");
-        for (String role : userRoles) {
-            role = role.toUpperCase().trim();
-            if(role != "") authorityList.add(new SimpleGrantedAuthority("ROLE_"+role));
-        }
-        return authorityList;
-    }
 }
