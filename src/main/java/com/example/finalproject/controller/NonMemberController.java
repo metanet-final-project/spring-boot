@@ -28,7 +28,7 @@ public class NonMemberController {
     public NonMember update(@RequestBody NonMember nonMember){
         return nonMemberService.update(nonMember);
     }
-    
+
     @DeleteMapping(value="/delete/{id}")
     public ResponseEntity<Integer> delete(@PathVariable int id){
         nonMemberService.delete(id);
