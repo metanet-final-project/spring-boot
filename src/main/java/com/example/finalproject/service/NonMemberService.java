@@ -7,9 +7,9 @@ import java.util.List;
 
 @Service
 public interface NonMemberService {
-    public NonMember insert(NonMember nonMember);
-    public NonMember update(NonMember nonMember);
-    public void delete(int id);
+    public int insert(NonMember nonMember);
+    public int update(NonMember nonMember);
+    public int delete(int id);
     public List<NonMember> getList();
 
 
