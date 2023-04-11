@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.finalproject.mapper.BusMapper">
+
+    <insert id="save" parameterType="com.example.finalproject.domain.Bus">
+        INSERT INTO bus VALUES(
+            seq_bus.nextval, #{busNum}, #{companyId}, #{grade})
+    </insert>
+
+    <select id="findAll" resultType="com.example.finalproject.domain.Bus">
+        SELECT * FROM bus
+    </select>
+
+    <update id="update" parameterType="com.example.finalproject.domain.Bus">
+        UPDATE bus SET bus_num = #{busNum}, company_id = #{companyId}, grade = #{grade} WHERE id = #{id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM bus WHERE id = #{id}
+    </delete>
+
+</mapper>
