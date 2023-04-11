@@ -1,6 +1,8 @@
 package com.example.finalproject.controller;
 
 import com.example.finalproject.domain.Member;
+import com.example.finalproject.dto.LoginRequest;
+import com.example.finalproject.dto.LoginResponse;
 import com.example.finalproject.security.JwtProvider;
 import com.example.finalproject.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -14,12 +16,21 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RestController
 public class MemberController {
-    @Autowired
-    private final JwtProvider jwtProvider;
+
     @Autowired
     private final MemberService memberService;
 
-    @GetMapping("/find/{memberId}")
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request) throws Exception{
+        return new ResponseEntity<>(memberService.login(request), HttpStatus.OK);
+    }
+
+    @PostMapping("/save")
+    public ResponseEntity<Integer> save(@RequestBody Member member)throws Exception{
+        return new ResponseEntity<>(memberService.save(member), HttpStatus.OK);
+    }
+
+    @GetMapping("/member/find/{memberId}")
     public ResponseEntity<Member> findById(@PathVariable int memberId){
         try {
             Member findMember = memberService.findById(memberId);

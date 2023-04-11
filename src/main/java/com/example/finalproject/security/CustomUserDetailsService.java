@@ -1,6 +1,7 @@
 package com.example.finalproject.security;
 
 import com.example.finalproject.domain.Member;
+import com.example.finalproject.mapper.MemberMapper;
 import com.example.finalproject.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -16,11 +17,11 @@ import java.util.List;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
-    private MemberService memberService;
+    private MemberMapper memberMapper;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Member member = memberService.findByLoginId(username);
+        Member member = memberMapper.findByLoginId(username);
         return new CustomUserDetails(member);
     }
 
