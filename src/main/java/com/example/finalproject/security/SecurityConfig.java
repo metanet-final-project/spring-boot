@@ -27,8 +27,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.httpBasic().disable() // 일반적인 루트가 아닌 다른 방식으로 요청 시, 거절
                 .authorizeHttpRequests() // 요청에 대한 권한 체크
-                .antMatchers("/member/**").hasRole("ROLE_MEMBER")
-                .antMatchers("/admin/**").hasRole("ROLE_ADMIN")
+//                .antMatchers("/member/**").hasRole("ROLE_MEMBER")
+//                .antMatchers("/admin/**").hasRole("ROLE_ADMIN")
                 .antMatchers("/**").permitAll()
                 .and()
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
