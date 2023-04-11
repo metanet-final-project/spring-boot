@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.finalproject.mapper.TerminalMapper">
+
+    <insert id="save" parameterType="com.example.finalproject.domain.Terminal">
+        INSERT INTO terminal VALUES(
+            seq_terminal.nextval, #{name}, #{location})
+    </insert>
+
+    <select id="findAll" resultType="com.example.finalproject.domain.Terminal">
+        SELECT * FROM terminal
+    </select>
+
+    <update id="update" parameterType="com.example.finalproject.domain.Terminal">
+        UPDATE terminal SET name = #{name}, location = #{location} WHERE id = #{id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM terminal WHERE id = #{id}
+    </delete>
+
+</mapper>
