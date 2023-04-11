@@ -7,7 +7,7 @@ import java.util.List;
 
 @Mapper
 public interface AgeMapper {
-    public void save(Age age);
+    public int save(Age age);
     public List<Age> findAll();
     public int update(Age age);
     public int delete(int id);

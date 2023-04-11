@@ -15,8 +15,8 @@ public class AgeServiceImpl implements AgeService{
     private AgeMapper mapper;
 
     @Override
-    public void save(Age age) {
-        mapper.save(age);
+    public int save(Age age) {
+        return mapper.save(age);
     }
 
     @Override

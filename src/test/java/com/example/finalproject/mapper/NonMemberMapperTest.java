@@ -1,26 +1,29 @@
 package com.example.finalproject.mapper;
 
-import com.example.finalproject.domain.Age;
+import com.example.finalproject.domain.NonMember;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
-class AgeMapperTest {
+class NonMemberMapperTest {
+
     @Autowired
-    private AgeMapper mapper;
+    private NonMemberMapper nonMemberMapper;
 
     @Test
-    void save() {
-        Age age = new Age();
-        age.setId(1000);
-        age.setName("성인");
+    void insert() {
+        NonMember non = new NonMember();
+
     }
 
     @Test
-    void findAll() {
+    void read() {
+    }
+
+    @Test
+    void delete() {
     }
 
     @Test
@@ -28,6 +31,6 @@ class AgeMapperTest {
     }
 
     @Test
-    void delete() {
+    void getList() {
     }
 }
