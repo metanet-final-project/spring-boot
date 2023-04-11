@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.finalproject.mapper.AgeMapper">
+
+    <insert id="save">
+        <selectKey keyProperty="id" resultType="int" order="BEFORE">
+            SELECT seq_member.nextval FROM DUAL
+        </selectKey>
+        insert into age (id, name)
+        values(#{id},#{name})
+    </insert>
+
+
+    <select id="findAll" resultType="com.example.finalproject.domain.Age">
+        select id,name
+        from age
+    </select>
+
+    <update id="update" parameterType="com.example.finalproject.domain.Age">
+        update age set name = #{name}
+        where id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        delete from age
+        where id = #{id}
+    </delete>
+</mapper>
