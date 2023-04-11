@@ -15,21 +15,18 @@ public class NonMemberServiceImpl implements  NonMemberService{
 
 
     @Override
-    public NonMember insert(NonMember nonMember) {
-        nonMemberMapper.insert(nonMember);
-        return nonMember;
+    public int insert(NonMember nonMember) {
+        return nonMemberMapper.insert(nonMember);
     }
 
 
     @Override
-    public NonMember update(NonMember nonMember) {
-        nonMemberMapper.update(nonMember);
-        return nonMember;
+    public int update(NonMember nonMember) {
+        return nonMemberMapper.update(nonMember);
     }
-
     @Override
-    public void delete(int id) {
-        nonMemberMapper.delete(id);
+    public int delete(int id) {
+        return nonMemberMapper.delete(id);
     }
 
     @Override
