@@ -15,30 +15,29 @@ public class RouteServiceImpl implements RouteService{
     private RouteMapper routeMapper;
 
     @Override
-    public ResponseEntity<Route> save(Route route) {
-        routeMapper.save(route);
-        return null;
+    public int save(Route route) {
+        return routeMapper.save(route);
     }
 
     @Override
-    public List<Route> findALL() {
-        return routeMapper.findALL();
+    public List<Route> findAll() {
+        return routeMapper.findAll();
     }
 
     @Override
-    public ResponseEntity<Route> update(Route route) {
-        routeMapper.update(route);
-        return null;
+    public int update(Route route) {
+        return routeMapper.update(route);
+
     }
 
     @Override
     public int delete(int id) {
-        routeMapper.delete(id);
-        return id;
+        return routeMapper.delete(id);
+
     }
 
     @Override
-    public Route find(int start_id) {
-        return routeMapper.find(start_id);
+    public List<Route> find(int startId) {
+        return routeMapper.find(startId);
     }
 }
