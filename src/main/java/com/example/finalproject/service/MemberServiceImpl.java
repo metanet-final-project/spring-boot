@@ -3,7 +3,9 @@ package com.example.finalproject.service;
 import com.example.finalproject.domain.Member;
 import com.example.finalproject.mapper.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class MemberServiceImpl implements MemberService {
     @Autowired
     private MemberMapper memberMapper;

@@ -5,14 +5,14 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface MemberMapper {
-    int save(Member member);
+    public int save(Member member);
 
-    Member findById(int memberId);
+    public Member findById(int memberId);
 
-    int update(Member member);
+    public int update(Member member);
 
-    int delete(int memberId);
+    public int delete(int memberId);
 
-    Member findByLoginId(String loginId);
+    public Member findByLoginId(String loginId);
 
 }
