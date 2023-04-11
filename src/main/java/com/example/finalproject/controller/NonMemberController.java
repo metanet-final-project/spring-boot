@@ -24,20 +24,11 @@ public class NonMemberController {
         return nonMemberService.getList();
     }
 
-//    @PostMapping(value="/update")
-//    public NonMember update(@RequestBody NonMember nonMember){
-//        return nonMemberService.update(nonMember);
-//    }
-    @PutMapping(value="/update")
-    public ResponseEntity<NonMember> update(@RequestBody NonMember nonMember) {
-        NonMember updatedNonMember = nonMemberService.update(nonMember);
-        if (updatedNonMember == null) {
-            return ResponseEntity.notFound().build();
-        } else {
-            return ResponseEntity.ok(updatedNonMember);
-        }
+    @PostMapping(value="/update")
+    public NonMember update(@RequestBody NonMember nonMember){
+        return nonMemberService.update(nonMember);
     }
-
+    
     @DeleteMapping(value="/delete/{id}")
     public ResponseEntity<Integer> delete(@PathVariable int id){
         nonMemberService.delete(id);
