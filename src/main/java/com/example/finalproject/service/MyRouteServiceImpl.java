@@ -14,27 +14,28 @@ public class MyRouteServiceImpl implements MyRouteService {
     private MyRouteMapper myRouteMapper;
 
     @Override
-    public void save(MyRoute myRoute) {
-        myRouteMapper.save(myRoute);
+    public int save(MyRoute myRoute) {
+        return myRouteMapper.save(myRoute);
     }
 
     @Override
-    public List<MyRoute> findALL() {
-        return myRouteMapper.findALL();
+    public List<MyRoute> findAll() {
+        return myRouteMapper.findAll();
     }
 
     @Override
-    public void update(MyRoute myRoute) {
-        myRouteMapper.update(myRoute);
+    public int update(MyRoute myRoute) {
+        return myRouteMapper.update(myRoute);
     }
 
     @Override
-    public void delete(int id) {
-        myRouteMapper.delete(id);
+    public int delete(int id) {
+        return myRouteMapper.delete(id);
     }
 
     @Override
     public MyRoute find(int id) {
+
         return myRouteMapper.find(id);
     }
 }

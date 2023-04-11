@@ -2,6 +2,7 @@ package com.example.finalproject.controller;
 
 import com.example.finalproject.domain.Route;
 import com.example.finalproject.service.RouteService;
+import lombok.AllArgsConstructor;
 import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,52 +15,59 @@ import java.util.List;
 
 
 
-@Controller
+@RestController
+@RequestMapping("/route")
+@AllArgsConstructor
 public class RouteController {
 
     @Autowired
     private RouteService routeService;
 
-    @GetMapping
-    public ResponseEntity<List<Route>> findAll(@RequestBody Route route){
-        try {
-            List<Route> RouteList = routeService.findALL();
-            if (RouteList != null) {
-                return new ResponseEntity<List<Route>>(RouteList, HttpStatus.OK);
-            }
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-        return new ResponseEntity<List<Route>>(HttpStatus.NO_CONTENT);
-    }
-
-    @PostMapping
-    public ResponseEntity<Route> save(@RequestBody Route route){
-        return routeService.save(route);
-    }
-
-
-    @PutMapping
-    public ResponseEntity<Route> update(@RequestBody Route route){
-        return routeService.update(route);
-
+    @GetMapping("/find-all")
+    public ResponseEntity<List<Route>> findAll(){
+        List<Route> routeList = routeService.findAll();
+        return routeList != null
+                ? new ResponseEntity<>(routeList, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 
     }
 
-    @DeleteMapping
-    public ResponseEntity<Integer> delete(@PathVariable int id){
-        try {
-            int result = routeService.delete(id);
-            if(result == 1){
-                return new ResponseEntity<Integer>(result, HttpStatus.OK);
-            }
-        }catch (Exception e){
-            log.error
-        }
+    @PostMapping("/save")
+    public ResponseEntity<String> save(@RequestBody Route route){
+
+        return routeService.save(route) == 1
+                ? new ResponseEntity<>("success", HttpStatus.CREATED)
+                : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @GetMapping
-    public find(){}
+
+    @PutMapping("/update")
+    public ResponseEntity<String> update(@RequestBody Route route){
+        return routeService.update(route) == 1
+                ? new ResponseEntity<>("success", HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+
+
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> delete(@PathVariable int id){
+
+        return routeService.delete(id) == 1
+                ? new ResponseEntity<>("success", HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+
+    }
+
+    @GetMapping("/find/end-point/{terminalId}")
+    public ResponseEntity<List<Route>>find(@PathVariable int terminalId){
+        List<Route> endIdList = routeService.find(terminalId);
+        return endIdList != null
+                ? new ResponseEntity<>(endIdList, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+
 
 
 }

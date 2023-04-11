@@ -5,27 +5,27 @@
 
 <mapper namespace="com.example.finalproject.mapper.MyRouteMapper">
 
-    <select id="findAll" resultType="MyRoute">
+    <select id="findAll" resultType="com.example.finalproject.domain.MyRoute">
         select * from myroute
     </select>
 
-    <insert id="save" parameterType="MyRoute">
+    <insert id="save" parameterType="com.example.finalproject.domain.MyRoute">
         insert into myroute values(seq_myroute.nextval, #{route_id}, #{member_id})
     </insert>
 
-    <update id="update" parameterType="MyRoute">
+    <update id="update" parameterType="com.example.finalproject.domain.MyRoute">
         update myroute set
           route_id=#{route_id},
           member_id=#{member_id}
         where id=#{id}
     </update>
 
-    <delete id="delete" parameterType="MyRoute">
+    <delete id="delete" parameterType="com.example.finalproject.domain.MyRoute">
         delete from myroute
         where id=#{id}
     </delete>
 
-    <select id="find" resultType="MyRoute">
+    <select id="find" resultType="com.example.finalproject.domain.MyRoute">
         select * from myroute
         where id=#{id}
     </select>

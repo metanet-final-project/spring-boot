@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class Route {
 
     private int id;
-    private int start_id;
-    private int end_id;
-    private int travel_time;
+    private int startId;
+    private int endId;
+    private int travelTime;
 }

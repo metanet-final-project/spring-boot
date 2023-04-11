@@ -9,10 +9,10 @@ import java.util.List;
 @Mapper
 public interface RouteMapper {
 
-    public void save(Route route);
-    public List<Route> findALL();
-    public void update(Route route);
-    public void delete(int id);
-    public Route find(int start_id); //출발 터미널로 도착 터미널 조회
+    public int save(Route route);
+    public List<Route> findAll();
+    public int update(Route route);
+    public int delete(int id);
+    public List<Route> find(int startId); //출발 터미널로 도착 터미널 조회
 
 }
