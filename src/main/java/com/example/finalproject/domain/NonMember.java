@@ -1,16 +1,17 @@
-package com.example.finalproject.vo;
+package com.example.finalproject.domain;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class NonMemberVO {
-    private Integer id;
+public class NonMember {
+    private int id;
     private String phone;
     private Date birth;
+
 }
