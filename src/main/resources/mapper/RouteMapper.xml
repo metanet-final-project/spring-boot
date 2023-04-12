@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.finalproject.mapper.RouteMapper">
+
+    <select id="findAll" resultType="com.example.finalproject.domain.Route">
+        select * from route
+    </select>
+
+    <insert id="save" parameterType="com.example.finalproject.domain.Route">
+        insert into route values(seq_route.nextval, #{start_id}, #{end_id}, #{travel_time})
+    </insert>
+
+    <update id="update" parameterType="com.example.finalproject.domain.Route">
+        update route set
+         start_id=#{start_id},
+         end_id=#{end_id},
+         travel_time=#{travel_time}
+        where id=#{id}
+    </update>
+
+    <delete id="delete" parameterType="com.example.finalproject.domain.Route">
+        delete from route
+        where id=#{id}
+    </delete>
+
+    <select id="find" resultType="com.example.finalproject.domain.Route" parameterType="int">
+        select end_id
+        from route
+        where start_id = #{start_id}
+    </select>
+
+</mapper>

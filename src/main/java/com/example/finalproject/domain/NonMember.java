@@ -6,24 +6,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
-
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class Member {
+@AllArgsConstructor
+public class NonMember {
     private int id;
-
-    private String loginId;
-
-    private String name;
-
-    private String password;
-
     private String phone;
-
-    private String role;
-
-    private String email;
-
     private Date birth;
+
 }

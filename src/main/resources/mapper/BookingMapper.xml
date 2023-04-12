@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.finalproject.mapper.BookingMapper">
+
+    <insert id="save">
+        <selectKey keyProperty="id" resultType="int" order="BEFORE">
+            SELECT seq_member.nextval FROM DUAL
+        </selectKey>
+        insert into booking
+        values(#{id},#{payId},#{memberId},#{nonMemberId},#{scheduleId},#{routeId},#{ageId},#{seatNum},#{state},#{price})
+    </insert>
+
+    <select id="findAll" resultType="com.example.finalproject.domain.Booking">
+        select * from booking
+    </select>
+
+    <update id="update" parameterType="com.example.finalproject.domain.Booking">
+        update booking set
+                           id = #{id},
+                           pay_id = #{payId},
+                           member_id = #{memberId},
+                           non_member_id = #{nonMemberId},
+                           schedule_id = #{scheduleId},
+                           route_id = #{routeId},
+                           age_id = #{ageId},
+                           seat_num = #{seatNum},
+                           state = #{state},
+                           price = #{price}
+        where id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        delete from booking
+        where id = #{id}
+    </delete>
+
+    <select id="findByBookingId" resultType="com.example.finalproject.domain.Booking">
+        select * from booking
+        where id = #{id}
+    </select>
+
+    <select id="findByNonMemberId" resultType="com.example.finalproject.domain.Booking">
+        select * from booking
+        where non_member_id = #{id};
+    </select>
+
+</mapper>
