@@ -2,10 +2,7 @@ package com.example.finalproject.mapper;
 
 import com.example.finalproject.domain.Member;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -19,7 +16,7 @@ class MemberMapperTest {
     private MemberMapper memberMapper;
 
     @BeforeEach
-    void clearDB(){
+    void initDB(){
         if(memberMapper.findByLoginId("dev") != null){
             memberMapper.delete(memberMapper.findByLoginId("dev").getId());
         }
