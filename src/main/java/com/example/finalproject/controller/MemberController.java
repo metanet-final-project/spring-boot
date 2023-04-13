@@ -39,7 +39,7 @@ public class MemberController {
         return new ResponseEntity<>(memberService.save(member), HttpStatus.OK);
     }
 
-    @GetMapping("/member/find/{memberId}")
+    @GetMapping("/member/findById/{memberId}")
     public ResponseEntity<Member> findById(@PathVariable int memberId){
         try {
             Member findMember = memberService.findById(memberId);
@@ -50,5 +50,18 @@ public class MemberController {
             e.getMessage();
         }
         return new ResponseEntity<Member>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/member/findByLoginId/{loginId}")
+    public ResponseEntity<Member> findByLoginId(@PathVariable String loginId){
+        try {
+            Member findMember = memberService.findByLoginId(loginId);
+            if(findMember != null){
+                return new ResponseEntity<>(findMember, HttpStatus.OK);
+            }
+        } catch (Exception e){
+            e.getMessage();
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
