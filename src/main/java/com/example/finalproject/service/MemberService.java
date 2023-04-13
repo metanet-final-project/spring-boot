@@ -6,6 +6,8 @@ import com.example.finalproject.dto.LoginResponse;
 import com.example.finalproject.mapper.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 public interface MemberService {
     LoginResponse login(LoginRequest request) throws Exception;
 
@@ -18,5 +20,7 @@ public interface MemberService {
     int delete(int memberId);
 
     Member findByLoginId(String loginId);
+
+    List<Member> findAllMember();
 
 }
