@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.finalproject.mapper.ScheduleMapper">
+
+    <resultMap id="scheduleMap" type="com.example.finalproject.dto.ScheduleDTO">
+        <result column="s.id" property="id" />
+        <result column="s.start_time" property="startTime" />
+        <result column="s.end_time" property="endTime" />
+        <result column="s.price" property="price" />
+        <association property="routeDTO" resultMap="routeMap" />
+        <association property="busDTO" resultMap="busMap" />
+    </resultMap>
+
+    <resultMap id="routeMap" type="com.example.finalproject.dto.RouteDTO">
+        <result column="r.id" property="id" />
+        <result column="r.travel_time" property="travelTime" />
+        <association property="startTerminal" resultMap="startTerminalMap" />
+        <association property="endTerminal" resultMap="endTerminalMap" />
+    </resultMap>
+
+    <resultMap id="startTerminalMap" type="com.example.finalproject.dto.TerminalDTO">
+        <result column="st.id" property="id" />
+        <result column="st.name" property="name" />
+        <result column="st.location" property="location" />
+    </resultMap>
+
+    <resultMap id="endTerminalMap" type="com.example.finalproject.dto.TerminalDTO">
+        <result column="et.id" property="id" />
+        <result column="et.name" property="name" />
+        <result column="et.location" property="location" />
+    </resultMap>
+
+    <resultMap id="busMap" type="com.example.finalproject.dto.BusDTO">
+        <result column="b.id" property="id" />
+        <result column="b.bus_num" property="busNum" />
+        <result column="b.grade" property="grade" />
+        <association property="companyDTO" resultMap="companyMap" />
+    </resultMap>
+
+    <resultMap id="companyMap" type="com.example.finalproject.dto.CompanyDTO">
+        <result column="c.id" property="id" />
+        <result column="c.name" property="name" />
+        <result column="c.phone" property="phone" />
+    </resultMap>
+
+    <select id="findById" parameterType="com.example.finalproject.domain.Schedule" resultMap="scheduleMap">
+        SELECT s.id as "s.id", s.start_time as "s.start_time", s.end_time as "s.end_time", s.price as "s.price",
+            r.id as "r.id", r.travel_time as "r.travel_time",
+            st.id as "st.id", st.name as "st.name", st.location as "st.location", et.id as "et.id", et.name as "et.name", et.location as "et.location",
+            b.id as "b.id", b.bus_num as "b.bus_num", b.grade as "b.grade",
+            c.id as "c.id", c.name as "c.name", c.phone as "c.phone"
+                FROM schedule s, route r, terminal st, terminal et, bus b, company c
+                WHERE r.id = s.route_id AND b.id = s.bus_id AND b.company_id = c.id AND r.start_id = st.id AND r.end_id = et.id
+                    AND s.id = #{id} AND s.route_id = #{routeId}
+    </select>
+
+
+</mapper>
