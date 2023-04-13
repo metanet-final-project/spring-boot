@@ -52,7 +52,7 @@ public class MemberController {
         }
         return new ResponseEntity<Member>(HttpStatus.NO_CONTENT);
     }
-
+    
     @GetMapping("/member/findByLoginId/{loginId}")
     public ResponseEntity<Member> findByLoginId(@PathVariable String loginId) {
         try {
@@ -66,7 +66,7 @@ public class MemberController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("member/findAllMember")
+    @GetMapping("/member/findAllMember")
     public ResponseEntity<List<Member>> findAllMember(){
         List<Member> allMember = memberService.findAllMember();
         return allMember !=null ?
