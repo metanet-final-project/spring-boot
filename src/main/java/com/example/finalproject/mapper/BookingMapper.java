@@ -2,6 +2,8 @@ package com.example.finalproject.mapper;
 
 import com.example.finalproject.domain.Booking;
 import com.example.finalproject.domain.NonMember;
+import com.example.finalproject.dto.BookingDTO;
+import com.example.finalproject.dto.ScheduleDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.scheduling.annotation.Scheduled;
 
@@ -17,9 +19,6 @@ public interface BookingMapper {
     public Booking findByBookingId(int id);
     public List<Booking> findByNonMemberId(int id);
     //public Schedule findAllBySeatId(int scheduled);
-<<<<<<< HEAD
-    public Booking findLatestBooking();
-=======
     public List<Booking> findSeatByScheduledId(int scheduleId);
->>>>>>> origin/ohohoh
+    public List<Booking> findByPayId(int payId);
 }

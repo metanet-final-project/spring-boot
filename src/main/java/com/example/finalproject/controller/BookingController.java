@@ -2,6 +2,7 @@ package com.example.finalproject.controller;
 
 import com.example.finalproject.domain.Booking;
 import com.example.finalproject.domain.NonMember;
+import com.example.finalproject.dto.BookingDTO;
 import com.example.finalproject.service.BookingService;
 import com.example.finalproject.service.NonMemberService;
 import lombok.AllArgsConstructor;
@@ -62,19 +63,6 @@ public class BookingController {
                 ? new ResponseEntity<>(bookingList,HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
-
-<<<<<<< HEAD
-    @GetMapping("/find/latestBooking")
-    public ResponseEntity<Booking> findLatestBooking() {
-        Booking latestBooking = service.findLatestBooking();
-        return latestBooking !=null
-                ? new ResponseEntity<>(latestBooking, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-
-
-
-=======
     @GetMapping("/find/seat/{scheduleId}")
     public ResponseEntity<List<Booking>> findSeatByScheduledId(@PathVariable int scheduleId){
         List<Booking> bookingList = service.findSeatByScheduledId(scheduleId);
@@ -82,6 +70,13 @@ public class BookingController {
                 ? new ResponseEntity<>(bookingList,HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
->>>>>>> origin/ohohoh
+
+    @GetMapping("/find/bypayid/{payId}")
+    public ResponseEntity<List<Booking>> findByPayId(@PathVariable int payId){
+        List<Booking> bookingListbypay = service.findByPayId(payId);
+        return bookingListbypay != null
+                ? new ResponseEntity<>(bookingListbypay,HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 
 }

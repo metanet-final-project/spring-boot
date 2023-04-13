@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-package com.example.finalproject.domain;public class Schedule {
-=======
+
 package com.example.finalproject.domain;
 
 import lombok.AllArgsConstructor;
@@ -19,5 +17,4 @@ public class Schedule {
     private LocalDateTime endTime;
     private int BusId;
     private int price;
->>>>>>> origin/ohohoh
 }

@@ -7,7 +7,6 @@ import com.example.finalproject.mapper.NonMemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -51,14 +50,12 @@ public class BookingServiceImpl implements BookingService{
     }
 
     @Override
-<<<<<<< HEAD
-    public Booking findLatestBooking() {
-        return bookingMapper.findLatestBooking();
-    }
-
-=======
     public List<Booking> findSeatByScheduledId(int scheduledId) {
         return bookingMapper.findSeatByScheduledId(scheduledId);
     }
->>>>>>> origin/ohohoh
+
+    @Override
+    public List<Booking> findByPayId(int payId) {
+        return bookingMapper.findByPayId(payId);
+    }
 }
