@@ -73,4 +73,11 @@ public class MemberController {
                 new ResponseEntity<>(allMember,HttpStatus.OK) :
                 new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @PutMapping("/member/update")
+    public ResponseEntity<String> update(@RequestBody Member member){
+        return memberService.update(member) ==1?
+                new ResponseEntity<>("OK",HttpStatus.OK) :
+                new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }
