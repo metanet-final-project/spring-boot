@@ -53,7 +53,7 @@ public class MemberController {
         return new ResponseEntity<Member>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("member/findAllMember")
+    @GetMapping("/member/findAllMember")
     public ResponseEntity<List<Member>> findAllMember(){
         List<Member> allMember = memberService.findAllMember();
         return allMember !=null ?
