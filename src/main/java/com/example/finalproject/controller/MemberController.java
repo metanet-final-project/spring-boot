@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 @Slf4j
 @RequiredArgsConstructor
 @RestController
+@RequestMapping("/api")
 public class MemberController {
     
     @Autowired

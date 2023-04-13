@@ -51,8 +51,14 @@ public class BookingServiceImpl implements BookingService{
     }
 
     @Override
+<<<<<<< HEAD
     public Booking findLatestBooking() {
         return bookingMapper.findLatestBooking();
     }
 
+=======
+    public List<Booking> findSeatByScheduledId(int scheduledId) {
+        return bookingMapper.findSeatByScheduledId(scheduledId);
+    }
+>>>>>>> origin/ohohoh
 }

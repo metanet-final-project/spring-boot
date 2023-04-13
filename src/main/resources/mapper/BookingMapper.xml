@@ -113,9 +113,10 @@
 
     <select id="findByNonMemberId" resultType="com.example.finalproject.domain.Booking">
         select * from booking
-        where non_member_id = #{id};
+        where non_member_id = #{id}
     </select>
 
+<<<<<<< HEAD
     <select id="findLatestBooking" parameterType="int" resultMap="bookingMap">
         select b.id as "b.id",b.pay_id, b.member_id,b.non_member_id,b.schedule_id,b.route_id,b.age_id,b.seat_num,b.state,b.price
         from booking b, age a, bus bu, company c, member m, non_member nm, pay p, route r, schedule s, terminal t
@@ -129,4 +130,10 @@
             fetch first 1 row only
     </select>
 
+=======
+    <select id="findSeatByScheduledId" resultType="com.example.finalproject.domain.Booking">
+        select * from booking
+            where schedule_id = #{scheduleId}
+    </select>
+>>>>>>> origin/ohohoh
 </mapper>

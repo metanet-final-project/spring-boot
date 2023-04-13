@@ -63,6 +63,7 @@ public class BookingController {
                 : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+<<<<<<< HEAD
     @GetMapping("/find/latestBooking")
     public ResponseEntity<Booking> findLatestBooking() {
         Booking latestBooking = service.findLatestBooking();
@@ -73,5 +74,14 @@ public class BookingController {
 
 
 
+=======
+    @GetMapping("/find/seat/{scheduleId}")
+    public ResponseEntity<List<Booking>> findSeatByScheduledId(@PathVariable int scheduleId){
+        List<Booking> bookingList = service.findSeatByScheduledId(scheduleId);
+        return bookingList != null
+                ? new ResponseEntity<>(bookingList,HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+>>>>>>> origin/ohohoh
 
 }
