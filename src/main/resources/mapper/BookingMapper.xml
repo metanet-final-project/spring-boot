@@ -2,6 +2,78 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.finalproject.mapper.BookingMapper">
 
+    <resultMap id = "bookingMap" type = "com.example.finalproject.domain.Booking">
+        <id column = "id" property="id" />
+        <result column="seat_num" property="seatNum"/>
+        <result column="state" property="state"/>
+        <result column="price" property="price"/>
+        <association property="pay" resultMap="payMap"/>
+        <association property="member" resultMap="memberMap"/>
+        <association property="nonMember" resultMap="nonMemberMap"/>
+        <association property="schedule" resultMap="scheduleMap"/>
+        <association property="route" resultMap="routeMap"/>
+        <association property="age" resultMap="ageMap"/>
+    </resultMap>
+    <resultMap id = "payMap" type = "com.example.finalproject.domain.Pay">
+        <id column = "id" property="id" />
+        <result column="card_number" property="cardNumber"/>
+        <result column="card_expiration" property="cardExpiration"/>
+        <result column="card_password" property="cardPassword"/>
+        <result column="birth" property="birth"/>
+        <result column="totalprice" property="totalPrice"/>
+    </resultMap>
+    <resultMap id = "member" type = "com.example.finalproject.domain.Member">
+        <id column = "id" property="id" />
+        <result column="login_id" property="loginId"/>
+        <result column="name" property="name"/>
+        <result column="password" property="password"/>
+        <result column="phone" property="phone"/>
+        <result column="role" property="role"/>
+        <result column="email" property="email"/>
+        <result column="birth" property="birth"/>
+    </resultMap>
+    <resultMap id = "nonMemberMap" type = "com.example.finalproject.domain.NonMember">
+        <id column = "id" property="id" />
+        <result column="phone" property="phone"/>
+        <result column="birth" property="birth"/>
+    </resultMap>
+    <resultMap id = "scheduleMap" type = "com.example.finalproject.domain.Schedule">
+        <id column = "id" property="id" />
+        <result column="start_time " property="startTime"/>
+        <result column="end_time " property="endTime"/>
+        <result column="price  " property="price"/>
+        <association property="route" resultMap="routeMap"/>
+        <association property="bus" resultMap="busMap"/>
+    </resultMap>
+    <resultMap id = "routeMap" type = "com.example.finalproject.domain.Route">
+        <id column = "id"  property="id" />
+        <result column="travel_time" property="travelTime"/>
+        <association property="startID" resultMap="terminalMap"/>
+        <association property="endID" resultMap="terminalMap"/>
+    </resultMap>
+    <resultMap id = "ageMap" type = "com.example.finalproject.domain.Age">
+        <id column = "id"  property="id" />
+        <result column="name" property="name"/>
+    </resultMap>
+    <resultMap id = "busMap" type = "com.example.finalproject.domain.Bus">
+        <id column = "id" property="id" />
+        <result column="bus_num " property="busNum"/>
+        <result column="grade" property="grade"/>
+        <association property="company" resultMap="companyMap"/>
+    </resultMap>
+    <resultMap id = "terminalMap" type = "com.example.finalproject.domain.Terminal">
+        <id column = "id" property="id" />
+        <result column="name" property="name"/>
+        <result column="location" property="location"/>
+    </resultMap>
+    <resultMap id = "companyMap" type = "com.example.finalproject.domain.Company">
+        <id column = "id" property="id" />
+        <result column="name" property="name"/>
+        <result column="phone" property="phone"/>
+    </resultMap>
+
+
+
     <insert id="save">
         <selectKey keyProperty="id" resultType="int" order="BEFORE">
             SELECT seq_member.nextval FROM DUAL
@@ -42,6 +114,19 @@
     <select id="findByNonMemberId" resultType="com.example.finalproject.domain.Booking">
         select * from booking
         where non_member_id = #{id};
+    </select>
+
+    <select id="findLatestBooking" parameterType="int" resultMap="bookingMap">
+        select b.id as "b.id",b.pay_id, b.member_id,b.non_member_id,b.schedule_id,b.route_id,b.age_id,b.seat_num,b.state,b.price
+        from booking b, age a, bus bu, company c, member m, non_member nm, pay p, route r, schedule s, terminal t
+        where b.pay_id=p.id
+          and b.member_id=m.id
+          and b.non_member_id=nm.id
+          and b.schedule_id=s.id
+          and b.route_id =r.id
+          and b.age_id=a.id
+        order by id desc
+            fetch first 1 row only
     </select>
 
 </mapper>

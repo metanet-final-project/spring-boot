@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @AllArgsConstructor
@@ -59,6 +60,14 @@ public class BookingController {
         List<Booking> bookingList = service.findByNonMemberId(nonMember);
         return bookingList != null
                 ? new ResponseEntity<>(bookingList,HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @GetMapping("/find/latestBooking")
+    public ResponseEntity<Booking> findLatestBooking() {
+        Booking latestBooking = service.findLatestBooking();
+        return latestBooking !=null
+                ? new ResponseEntity<>(latestBooking, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 

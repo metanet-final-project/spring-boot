@@ -5,6 +5,7 @@ import com.example.finalproject.domain.NonMember;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.scheduling.annotation.Scheduled;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Mapper
@@ -16,4 +17,5 @@ public interface BookingMapper {
     public Booking findByBookingId(int id);
     public List<Booking> findByNonMemberId(int id);
     //public Schedule findAllBySeatId(int scheduled);
+    public Booking findLatestBooking();
 }

@@ -7,6 +7,7 @@ import com.example.finalproject.mapper.NonMemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -48,4 +49,10 @@ public class BookingServiceImpl implements BookingService{
         int id = nonMemberMapper.get(nonMember);
         return bookingMapper.findByNonMemberId(id);
     }
+
+    @Override
+    public Booking findLatestBooking() {
+        return bookingMapper.findLatestBooking();
+    }
+
 }
