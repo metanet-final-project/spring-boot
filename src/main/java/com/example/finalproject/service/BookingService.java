@@ -14,4 +14,5 @@ public interface BookingService {
     public Booking findByBookingId(int id);
     public List<Booking> findByNonMemberId(NonMember nonMember);
     //public Schedule findAllBySeatId(int scheduled);
+    public List<Booking> findSeatByScheduledId(int scheduledId);
 }

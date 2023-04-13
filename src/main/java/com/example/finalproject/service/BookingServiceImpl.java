@@ -48,4 +48,9 @@ public class BookingServiceImpl implements BookingService{
         int id = nonMemberMapper.get(nonMember);
         return bookingMapper.findByNonMemberId(id);
     }
+
+    @Override
+    public List<Booking> findSeatByScheduledId(int scheduledId) {
+        return bookingMapper.findSeatByScheduledId(scheduledId);
+    }
 }

@@ -41,7 +41,11 @@
 
     <select id="findByNonMemberId" resultType="com.example.finalproject.domain.Booking">
         select * from booking
-        where non_member_id = #{id};
+        where non_member_id = #{id}
     </select>
 
+    <select id="findSeatByScheduledId" resultType="com.example.finalproject.domain.Booking">
+        select * from booking
+            where schedule_id = #{scheduleId}
+    </select>
 </mapper>

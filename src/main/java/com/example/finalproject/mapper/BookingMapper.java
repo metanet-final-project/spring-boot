@@ -16,4 +16,5 @@ public interface BookingMapper {
     public Booking findByBookingId(int id);
     public List<Booking> findByNonMemberId(int id);
     //public Schedule findAllBySeatId(int scheduled);
+    public List<Booking> findSeatByScheduledId(int scheduleId);
 }
