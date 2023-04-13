@@ -8,7 +8,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 @RequestMapping("/api/schedule")
 @RestController
@@ -17,11 +20,14 @@ public class ScheduleController {
 
     private ScheduleService scheduleService;
 
-    @GetMapping("/find")
-    public ResponseEntity<List<ScheduleDTO>> findById(@RequestBody Schedule schedule){
-        List<ScheduleDTO> scheduleDTOList = scheduleService.findById(schedule);
-        return scheduleDTOList != null
-                ? new ResponseEntity<>(scheduleDTOList, HttpStatus.OK)
+    @GetMapping("/find/{id}/{routeId}")
+    public ResponseEntity<ScheduleDTO> findById(@PathVariable int id, @PathVariable int routeId){
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("id", id);
+        map.put("routeId", routeId);
+        ScheduleDTO scheduleDTO = scheduleService.findById(map);
+        return scheduleDTO != null
+                ? new ResponseEntity<>(scheduleDTO, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 
     }

@@ -43,7 +43,7 @@
         <result column="c.phone" property="phone" />
     </resultMap>
 
-    <select id="findById" parameterType="com.example.finalproject.domain.Schedule" resultMap="scheduleMap">
+    <select id="findById" parameterType="Hashmap" resultMap="scheduleMap">
         SELECT s.id as "s.id", s.start_time as "s.start_time", s.end_time as "s.end_time", s.price as "s.price",
             r.id as "r.id", r.travel_time as "r.travel_time",
             st.id as "st.id", st.name as "st.name", st.location as "st.location", et.id as "et.id", et.name as "et.name", et.location as "et.location",

@@ -6,6 +6,7 @@ import com.example.finalproject.mapper.ScheduleMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -15,7 +16,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     private ScheduleMapper scheduleMapper;
 
     @Override
-    public List<ScheduleDTO> findById(Schedule schedule) {
-        return scheduleMapper.findById(schedule);
+    public ScheduleDTO findById(HashMap map) {
+        return scheduleMapper.findById(map);
     }
 }

@@ -1,10 +1,9 @@
 package com.example.finalproject.service;
 
-import com.example.finalproject.domain.Schedule;
 import com.example.finalproject.dto.ScheduleDTO;
 
-import java.util.List;
+import java.util.HashMap;
 
 public interface ScheduleService {
-    public List<ScheduleDTO> findById(Schedule schedule);
+    public ScheduleDTO findById(HashMap map);
 }
