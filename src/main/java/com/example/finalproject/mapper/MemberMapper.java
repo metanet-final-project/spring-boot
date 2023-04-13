@@ -17,4 +17,5 @@ public interface MemberMapper {
 
     public Member findByLoginId(String loginId);
     public List<Member> findAllMember();
+    public List<Member> findByName(String name);
 }

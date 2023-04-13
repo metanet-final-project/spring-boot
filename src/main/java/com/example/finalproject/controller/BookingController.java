@@ -33,7 +33,7 @@ public class BookingController {
                 new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     public ResponseEntity<String> update(@RequestBody Booking booking){
         return service.update(booking) ==1 ?
                 new ResponseEntity<>("OK",HttpStatus.OK) :

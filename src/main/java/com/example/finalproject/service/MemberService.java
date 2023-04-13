@@ -23,4 +23,6 @@ public interface MemberService {
 
     List<Member> findAllMember();
 
+    List<Member> findByName(String name);
+
 }

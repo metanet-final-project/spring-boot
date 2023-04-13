@@ -87,4 +87,11 @@ public class MemberServiceImpl implements MemberService {
     public List<Member> findAllMember() {
         return memberMapper.findAllMember();
     }
+
+    @Override
+    public List<Member> findByName(String name) {
+        return memberMapper.findByName(name);
+    }
+
+
 }

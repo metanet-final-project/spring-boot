@@ -66,6 +66,23 @@ public class MemberController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @DeleteMapping("/member/delete/{memberId}")
+    public ResponseEntity<Integer> delete(@PathVariable int memberId){
+        return memberService.delete(memberId) == 1 ?
+                new ResponseEntity<>(memberService.delete(memberId),HttpStatus.OK) :
+                new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @PutMapping("/member/update")
+    public ResponseEntity<String> update(@RequestBody Member member){
+        return memberService.update(member) ==1 ?
+                new ResponseEntity<>("ok",HttpStatus.OK) :
+                new ResponseEntity<>("error",HttpStatus.INTERNAL_SERVER_ERROR);
+
+    }
+
+
+
     @GetMapping("/member/findAllMember")
     public ResponseEntity<List<Member>> findAllMember(){
         List<Member> allMember = memberService.findAllMember();
@@ -73,4 +90,12 @@ public class MemberController {
                 new ResponseEntity<>(allMember,HttpStatus.OK) :
                 new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
+    @GetMapping("/member/findByName/{name}")
+    public ResponseEntity<List<Member>> findByName(@PathVariable String name) {
+        List<Member> findName = memberService.findByName(name);
+        return findName !=null?
+                new ResponseEntity<>(findName,HttpStatus.OK):
+                new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
 }
