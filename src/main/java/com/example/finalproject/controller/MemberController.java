@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -50,5 +51,13 @@ public class MemberController {
             e.getMessage();
         }
         return new ResponseEntity<Member>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("member/findAllMember")
+    public ResponseEntity<List<Member>> findAllMember(){
+        List<Member> allMember = memberService.findAllMember();
+        return allMember !=null ?
+                new ResponseEntity<>(allMember,HttpStatus.OK) :
+                new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

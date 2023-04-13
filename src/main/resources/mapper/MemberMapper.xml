@@ -32,4 +32,9 @@
     <select id="findByLoginId" resultType="Member">
         SELECT * FROM member WHERE login_id = #{loginId}
     </select>
+
+    <select id="findAllMember" resultType="Member">
+        SELECT * FROM member
+        WHERE role IN 'MEMBER'
+    </select>
 </mapper>
