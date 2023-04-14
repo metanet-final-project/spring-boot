@@ -2,9 +2,12 @@ package com.example.finalproject.mapper;
 
 import com.example.finalproject.domain.Booking;
 import com.example.finalproject.domain.NonMember;
+import com.example.finalproject.dto.BookingDTO;
+import com.example.finalproject.dto.ScheduleDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.scheduling.annotation.Scheduled;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Mapper
@@ -17,4 +20,5 @@ public interface BookingMapper {
     public List<Booking> findByNonMemberId(int id);
     //public Schedule findAllBySeatId(int scheduled);
     public List<Booking> findSeatByScheduledId(int scheduleId);
+    public List<Booking> findByPayId(int payId);
 }

@@ -53,4 +53,9 @@ public class BookingServiceImpl implements BookingService{
     public List<Booking> findSeatByScheduledId(int scheduledId) {
         return bookingMapper.findSeatByScheduledId(scheduledId);
     }
+
+    @Override
+    public List<Booking> findByPayId(int payId) {
+        return bookingMapper.findByPayId(payId);
+    }
 }
