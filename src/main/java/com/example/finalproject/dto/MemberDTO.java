@@ -7,7 +7,7 @@ import java.util.Date;
 @Data
 public class MemberDTO {
     private int id;
-    private String loginID;
+    private String loginId;
     private String name;
     private String password;
     private String phone;

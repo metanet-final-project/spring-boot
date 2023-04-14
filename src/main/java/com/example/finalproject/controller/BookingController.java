@@ -16,7 +16,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/booking")
+@RequestMapping("/api/booking")
 public class BookingController {
     @Autowired
     private BookingService service;
@@ -76,6 +76,15 @@ public class BookingController {
         List<Booking> bookingListbypay = service.findByPayId(payId);
         return bookingListbypay != null
                 ? new ResponseEntity<>(bookingListbypay,HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @GetMapping("/find/findByLoginId/{loginId}")
+    public ResponseEntity<List<Booking>> findByLoginId(@PathVariable String loginId){
+
+        List<Booking> findList = service.findByLoginId(loginId);
+        return findList != null
+                ? new ResponseEntity<>(findList,HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
