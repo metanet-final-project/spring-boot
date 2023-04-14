@@ -34,6 +34,11 @@ public class BookingServiceImpl implements BookingService{
     }
 
     @Override
+    public int changeBookingState(Booking booking) {
+        return bookingMapper.changeBookingState(booking);
+    }
+
+    @Override
     public int delete(int id) {
         return bookingMapper.delete(id);
     }

@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.print.Book;
 import java.util.HashMap;
 import java.util.List;
 
@@ -40,6 +41,13 @@ public class BookingController {
         return service.update(booking) ==1 ?
                 new ResponseEntity<>("OK",HttpStatus.OK) :
                 new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @PutMapping("/changeBookingState")
+    public ResponseEntity<String> changeBookingState(@RequestBody Booking booking){
+        return service.changeBookingState(booking) == 1 ?
+                new ResponseEntity<>("ok",HttpStatus.OK) :
+                new ResponseEntity<>("error",HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @DeleteMapping("/delete/{id}")

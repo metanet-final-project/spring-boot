@@ -95,6 +95,12 @@
         select * from booking
     </select>
 
+    <update id="changeBookingState">
+        update booking set
+            state = #{state}
+        where id = #{id}
+    </update>
+
     <update id="update" parameterType="com.example.finalproject.domain.Booking">
         update booking set
                            id = #{id},
@@ -150,7 +156,8 @@
                c.id as "c.id", c.name as "c.name", c.phone as "c.phone"
         FROM booking bo, pay p, age a, schedule s, route r, terminal st, terminal et, bus b, company c, member m
         WHERE r.id = s.route_id AND b.id = s.bus_id AND b.company_id = c.id AND r.start_id = st.id AND r.end_id = et.id AND bo.pay_id = p.id AND bo.schedule_id = s.id AND bo.age_id = a.id
-          AND bo.member_id =m.id AND m.login_id = #{loginId}
+          AND bo.member_id =m.id AND bo.state = '결제완료' AND m.login_id = #{loginId}
+        order by s.start_time
     </select>
 
     <select id="findSeatByScheduledId" resultType="com.example.finalproject.domain.Booking">

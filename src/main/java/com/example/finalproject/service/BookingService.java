@@ -1,6 +1,7 @@
 package com.example.finalproject.service;
 
 import com.example.finalproject.domain.Booking;
+import com.example.finalproject.domain.Member;
 import com.example.finalproject.domain.NonMember;
 
 import java.awt.print.Book;
@@ -10,6 +11,8 @@ public interface BookingService {
     public int save(Booking booking);
     public List<Booking> findAll();
     public int update(Booking booking);
+
+    public int changeBookingState(Booking booking);
     public int delete(int id);
     public Booking findByBookingId(int id);
     public List<Booking> findByNonMemberId(NonMember nonMember);

@@ -15,6 +15,8 @@ public interface BookingMapper {
     public int save(Booking booking);
     public List<Booking> findAll();
     public int update(Booking booking);
+
+    public int changeBookingState(Booking booking); //예매 상태 변경
     public int delete(int id);
     public Booking findByBookingId(int id);
     public List<Booking> findByNonMemberId(int id);
