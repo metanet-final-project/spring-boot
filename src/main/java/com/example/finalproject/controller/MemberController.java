@@ -73,6 +73,24 @@ public class MemberController {
                 new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    
+    @GetMapping("/member/findAllMember")
+    public ResponseEntity<List<Member>> findAllMember(){
+        List<Member> allMember = memberService.findAllMember();
+        return allMember !=null ?
+                new ResponseEntity<>(allMember,HttpStatus.OK) :
+                new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @GetMapping("/member/findByName/{name}")
+    public ResponseEntity<List<Member>> findByName(@PathVariable String name) {
+        List<Member> findName = memberService.findByName(name);
+        return findName !=null?
+                new ResponseEntity<>(findName,HttpStatus.OK):
+                new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+
     @PutMapping("/member/update")
     public ResponseEntity<String> update(@RequestBody Member member){
         return memberService.update(member) ==1 ?
@@ -81,21 +99,5 @@ public class MemberController {
 
     }
 
-
-
-    @GetMapping("/member/findAllMember")
-    public ResponseEntity<List<Member>> findAllMember(){
-        List<Member> allMember = memberService.findAllMember();
-        return allMember !=null ?
-                new ResponseEntity<>(allMember,HttpStatus.OK) :
-                new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-    @GetMapping("/member/findByName/{name}")
-    public ResponseEntity<List<Member>> findByName(@PathVariable String name) {
-        List<Member> findName = memberService.findByName(name);
-        return findName !=null?
-                new ResponseEntity<>(findName,HttpStatus.OK):
-                new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-    }
 
 }
