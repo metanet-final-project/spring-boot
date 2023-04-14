@@ -19,4 +19,9 @@ public class ScheduleServiceImpl implements ScheduleService {
     public ScheduleDTO findById(HashMap map) {
         return scheduleMapper.findById(map);
     }
+
+    @Override
+    public List<ScheduleDTO> findByRouteId(int routeId) {
+        return scheduleMapper.findByRouteId(routeId);
+    }
 }

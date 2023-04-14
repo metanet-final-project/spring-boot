@@ -29,6 +29,14 @@ public class ScheduleController {
         return scheduleDTO != null
                 ? new ResponseEntity<>(scheduleDTO, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 
+    @GetMapping("/find/seat/{routeId}")
+    public ResponseEntity<List<ScheduleDTO>> findByRouteId(@PathVariable int routeId){
+
+        List<ScheduleDTO> scheduleDTOList = scheduleService.findByRouteId(routeId);
+        return scheduleDTOList != null
+                ? new ResponseEntity<>(scheduleDTOList, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
