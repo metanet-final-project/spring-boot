@@ -6,6 +6,7 @@ import com.example.finalproject.dto.LoginResponse;
 import com.example.finalproject.mapper.MemberMapper;
 import com.example.finalproject.security.JwtProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jmx.export.metadata.ManagedMetric;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -80,5 +81,10 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public Member findByLoginId(String loginId) {
         return memberMapper.findByLoginId(loginId);
+    }
+
+    @Override
+    public List<Member> findAllMember() {
+        return memberMapper.findAllMember();
     }
 }

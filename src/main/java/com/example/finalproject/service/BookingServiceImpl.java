@@ -55,6 +55,11 @@ public class BookingServiceImpl implements BookingService{
     }
 
     @Override
+    public List<Booking> findByLoginId(String loginId) {
+        return bookingMapper.findByLoginId(loginId);
+    }
+
+    @Override
     public List<Booking> findByPayId(int payId) {
         return bookingMapper.findByPayId(payId);
     }

@@ -21,4 +21,6 @@ public interface BookingMapper {
     //public Schedule findAllBySeatId(int scheduled);
     public List<Booking> findSeatByScheduledId(int scheduleId);
     public List<Booking> findByPayId(int payId);
+
+    public List<Booking> findByLoginId(String loginId);
 }

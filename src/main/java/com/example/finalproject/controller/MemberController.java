@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -39,7 +40,7 @@ public class MemberController {
         return new ResponseEntity<>(memberService.save(member), HttpStatus.OK);
     }
 
-    @GetMapping("/member/find/{memberId}")
+    @GetMapping("/member/findById/{memberId}")
     public ResponseEntity<Member> findById(@PathVariable int memberId){
         try {
             Member findMember = memberService.findById(memberId);
@@ -50,5 +51,33 @@ public class MemberController {
             e.getMessage();
         }
         return new ResponseEntity<Member>(HttpStatus.NO_CONTENT);
+    }
+    
+    @GetMapping("/member/findByLoginId/{loginId}")
+    public ResponseEntity<Member> findByLoginId(@PathVariable String loginId) {
+        try {
+            Member findMember = memberService.findByLoginId(loginId);
+            if (findMember != null) {
+                return new ResponseEntity<>(findMember, HttpStatus.OK);
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/member/findAllMember")
+    public ResponseEntity<List<Member>> findAllMember(){
+        List<Member> allMember = memberService.findAllMember();
+        return allMember !=null ?
+                new ResponseEntity<>(allMember,HttpStatus.OK) :
+                new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @PutMapping("/member/update")
+    public ResponseEntity<String> update(@RequestBody Member member){
+        return memberService.update(member) ==1?
+                new ResponseEntity<>("OK",HttpStatus.OK) :
+                new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
