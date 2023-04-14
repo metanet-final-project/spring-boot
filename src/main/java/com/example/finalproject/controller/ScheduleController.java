@@ -29,6 +29,5 @@ public class ScheduleController {
         return scheduleDTO != null
                 ? new ResponseEntity<>(scheduleDTO, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-
     }
 }
