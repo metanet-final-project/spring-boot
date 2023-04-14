@@ -35,6 +35,14 @@ public class BookingController {
                 new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @GetMapping("/find-all-DTO")
+    public ResponseEntity<List<BookingDTO>> findAllDTO(){
+        List<BookingDTO> bookingList = service.findAllDTO();
+        return bookingList != null ?
+                new ResponseEntity<>(bookingList,HttpStatus.OK) :
+                new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
     @PutMapping("/update")
     public ResponseEntity<String> update(@RequestBody Booking booking){
         return service.update(booking) ==1 ?
