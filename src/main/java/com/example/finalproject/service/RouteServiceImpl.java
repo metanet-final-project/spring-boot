@@ -47,6 +47,7 @@ public class RouteServiceImpl implements RouteService{
             routeDTO.setId(route.getId());
             routeDTO.setStartTerminal(terminalMapper.findById(route.getStartId()));
             routeDTO.setEndTerminal(terminalMapper.findById(route.getEndId()));
+            routeDTO.setTravelTime(route.getTravelTime());
             routeDTOList.add(routeDTO);
         });
         return routeDTOList;
