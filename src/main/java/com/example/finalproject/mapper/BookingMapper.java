@@ -14,6 +14,8 @@ import java.util.List;
 public interface BookingMapper {
     public int save(Booking booking);
     public List<Booking> findAll();
+
+    public List<BookingDTO> findAllDTO();
     public int update(Booking booking);
 
     public int changeBookingState(Booking booking); //예매 상태 변경
@@ -23,6 +25,5 @@ public interface BookingMapper {
     //public Schedule findAllBySeatId(int scheduled);
     public List<Booking> findSeatByScheduledId(int scheduleId);
     public List<Booking> findByPayId(int payId);
-
     public List<Booking> findByLoginId(String loginId);
 }

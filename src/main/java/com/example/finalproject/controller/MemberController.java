@@ -98,6 +98,4 @@ public class MemberController {
                 new ResponseEntity<>("error",HttpStatus.INTERNAL_SERVER_ERROR);
 
     }
-
-
 }

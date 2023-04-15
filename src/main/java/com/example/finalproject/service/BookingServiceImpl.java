@@ -2,10 +2,9 @@ package com.example.finalproject.service;
 
 import com.example.finalproject.domain.Booking;
 import com.example.finalproject.domain.NonMember;
-import com.example.finalproject.domain.Pay;
+import com.example.finalproject.dto.BookingDTO;
 import com.example.finalproject.mapper.BookingMapper;
 import com.example.finalproject.mapper.NonMemberMapper;
-import com.example.finalproject.mapper.PayMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -69,5 +68,10 @@ public class BookingServiceImpl implements BookingService{
     @Override
     public List<Booking> findByPayId(int payId) {
         return bookingMapper.findByPayId(payId);
+    }
+
+    @Override
+    public List<BookingDTO> findAllDTO() {
+        return bookingMapper.findAllDTO();
     }
 }
