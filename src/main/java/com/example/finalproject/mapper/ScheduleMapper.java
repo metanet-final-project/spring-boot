@@ -11,4 +11,6 @@ import java.util.List;
 public interface ScheduleMapper {
     public ScheduleDTO findById(HashMap map);
     public List<ScheduleDTO> findByRouteId(int routeId);
+    public int save(Schedule schedule);
+    public List<Schedule> findAll();
 }

@@ -8,4 +8,5 @@ import java.util.List;
 public interface ScheduleService {
     public ScheduleDTO findById(HashMap map);
     public List<ScheduleDTO> findByRouteId(int routeId);
+    public boolean createDailySchedule();
 }

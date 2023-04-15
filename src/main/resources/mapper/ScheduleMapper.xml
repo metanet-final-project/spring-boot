@@ -68,4 +68,11 @@
                                 b.id, b.bus_num, b.grade, c.id, c.name, c.phone
     </select>
 
+    <insert id="save" parameterType="com.example.finalproject.domain.Schedule" >
+        INSERT INTO schedule VALUES(#{id}, #{routeId}, #{startTime}, #{endTime}, #{busId}, #{price})
+    </insert>
+
+    <select id="findAll" resultType="com.example.finalproject.domain.Schedule">
+        SELECT * FROM schedule
+    </select>
 </mapper>
