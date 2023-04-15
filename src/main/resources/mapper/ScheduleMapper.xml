@@ -7,6 +7,7 @@
         <result column="s.start_time" property="startTime" />
         <result column="s.end_time" property="endTime" />
         <result column="s.price" property="price" />
+        <result column="count" property="countSeat" />
         <association property="routeDTO" resultMap="routeMap" />
         <association property="busDTO" resultMap="busMap" />
     </resultMap>
@@ -54,5 +55,17 @@
                     AND s.id = #{id} AND s.route_id = #{routeId}
     </select>
 
+    <select id="findByRouteId" parameterType="Hashmap" resultMap="scheduleMap">
+        SELECT s.id as "s.id", s.start_time as "s.start_time", s.end_time as "s.end_time", s.price as "s.price",
+        r.id as "r.id", r.travel_time as "r.travel_time",
+        st.id as "st.id", st.name as "st.name", st.location as "st.location", et.id as "et.id", et.name as "et.name", et.location as "et.location",
+        b.id as "b.id", b.bus_num as "b.bus_num", b.grade as "b.grade",
+        c.id as "c.id", c.name as "c.name", c.phone as "c.phone", COUNT(bo.id) as "count"
+            FROM schedule s, route r, terminal st, terminal et, bus b, company c, booking bo
+                WHERE s.id = bo.schedule_id AND r.id = s.route_id AND b.id = s.bus_id AND b.company_id = c.id AND r.start_id = st.id AND r.end_id = et.id
+                    AND s.route_id = 1
+                        GROUP BY s.id, s.start_time, s.end_time, s.price, r.id, r.travel_time, st.id, st.name, st.location, et.id, et.name, et.location,
+                                b.id, b.bus_num, b.grade, c.id, c.name, c.phone
+    </select>
 
 </mapper>
