@@ -32,4 +32,8 @@
         where start_id = #{start_id}
     </select>
 
+    <select id="findAllByStartTerminalId" resultType="Route">
+        SELECT * FROM route WHERE start_id = #{start_id}
+    </select>
+
 </mapper>

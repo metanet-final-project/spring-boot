@@ -1,6 +1,7 @@
 package com.example.finalproject.controller;
 
 import com.example.finalproject.domain.Route;
+import com.example.finalproject.dto.RouteDTO;
 import com.example.finalproject.service.RouteService;
 import lombok.AllArgsConstructor;
 import org.apache.ibatis.annotations.Delete;
@@ -65,6 +66,14 @@ public class RouteController {
         return endIdList != null
                 ? new ResponseEntity<>(endIdList, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @GetMapping("/findByEndPoint/{terminalId}")
+    public ResponseEntity<List<RouteDTO>>findByEndPoint(@PathVariable int terminalId){
+        List<RouteDTO> routeDTOList = routeService.findAllByStartTerminalId(terminalId);
+        return routeDTOList != null
+                ? new ResponseEntity<>(routeDTOList, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 

@@ -14,6 +14,11 @@ public class TerminalServiceImpl implements TerminalService{
     private TerminalMapper terminalMapper;
 
     @Override
+    public Terminal findById(int id) {
+        return terminalMapper.findById(id);
+    }
+
+    @Override
     public int save(Terminal terminal) {
         return terminalMapper.save(terminal);
     }

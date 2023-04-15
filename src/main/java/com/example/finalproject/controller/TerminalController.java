@@ -48,4 +48,17 @@ public class TerminalController {
                 ? new ResponseEntity<>("success", HttpStatus.OK)
                 : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @GetMapping("/findById/{terminalId}")
+    public ResponseEntity<Terminal> findById(@PathVariable int terminalId){
+        try{
+            Terminal findTerminal = terminalService.findById(terminalId);
+            if(findTerminal != null){
+                return new ResponseEntity<>(findTerminal, HttpStatus.OK);
+            }
+        } catch (Exception e){
+            e.getMessage();
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }
