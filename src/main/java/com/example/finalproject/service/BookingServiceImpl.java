@@ -48,6 +48,7 @@ public class BookingServiceImpl implements BookingService{
         return bookingMapper.findByBookingId(id);
     }
 
+
     @Override
     public List<Booking> findByNonMemberId(NonMember nonMember) {
         int id = nonMemberMapper.get(nonMember);
@@ -62,6 +63,11 @@ public class BookingServiceImpl implements BookingService{
     @Override
     public List<Booking> findByLoginId(String loginId) {
         return bookingMapper.findByLoginId(loginId);
+    }
+
+    @Override
+    public List<Booking> findCancelByLoginId(String loginId) {
+        return bookingMapper.findCancelByLoginId(loginId);
     }
 
     @Override

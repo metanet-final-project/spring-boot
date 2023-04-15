@@ -21,4 +21,6 @@ public interface BookingService {
     public List<Booking> findByPayId(int payId);
 
     public List<Booking> findByLoginId(String loginId);
+
+    public List<Booking> findCancelByLoginId(String loginId);
 }

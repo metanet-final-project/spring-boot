@@ -96,4 +96,11 @@ public class BookingController {
                 : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @GetMapping("/find/findCancelByLoginId/{loginId}")
+    public ResponseEntity<List<Booking>> findCancelByLoginId(@PathVariable String loginId){
+        List<Booking> findCancelList = service.findCancelByLoginId(loginId);
+        return findCancelList != null
+                ? new ResponseEntity<>(findCancelList,HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }
