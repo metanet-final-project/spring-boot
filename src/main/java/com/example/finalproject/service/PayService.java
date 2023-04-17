@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 public interface PayService {
-    public int insert(PayBookingListDTO payBookingListDTO);
+    //public int insert(PayBookingListDTO payBookingListDTO);
     public int insert(PayBookingNonMemListDTO payBookingNonMemListDTO);
     public Pay getById(int id);
 }

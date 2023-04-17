@@ -63,13 +63,13 @@
         <association property="endTerminal" resultMap="endTerminalMap" />
     </resultMap>
 
-    <resultMap id="startTerminalMap" type="com.example.finalproject.dto.TerminalDTO">
+    <resultMap id="startTerminalMap" type="com.example.finalproject.domain.Terminal">
         <result column="st.id" property="id" />
         <result column="st.name" property="name" />
         <result column="st.location" property="location" />
     </resultMap>
 
-    <resultMap id="endTerminalMap" type="com.example.finalproject.dto.TerminalDTO">
+    <resultMap id="endTerminalMap" type="com.example.finalproject.domain.Terminal">
         <result column="et.id" property="id" />
         <result column="et.name" property="name" />
         <result column="et.location" property="location" />
