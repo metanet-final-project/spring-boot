@@ -1,5 +1,6 @@
 package com.example.finalproject.mapper;
 
+import com.example.finalproject.domain.Member;
 import com.example.finalproject.domain.Terminal;
 import org.apache.ibatis.annotations.Mapper;
 

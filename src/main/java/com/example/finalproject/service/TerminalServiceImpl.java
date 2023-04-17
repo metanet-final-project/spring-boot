@@ -37,4 +37,6 @@ public class TerminalServiceImpl implements TerminalService{
     public int delete(int id) {
         return terminalMapper.delete(id);
     }
+
+
 }

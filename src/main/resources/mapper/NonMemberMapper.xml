@@ -31,4 +31,8 @@
         select id from non_member where phone = #{phone}
     </select>
 
+    <select id="findByPhone" resultType="com.example.finalproject.domain.NonMember">
+        SELECT * FROM non_member WHERE phone = #{phone}
+    </select>
+
 </mapper>

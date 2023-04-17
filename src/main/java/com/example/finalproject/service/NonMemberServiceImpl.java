@@ -33,4 +33,9 @@ public class NonMemberServiceImpl implements  NonMemberService{
     public List<NonMember> getList() {
         return nonMemberMapper.getList();
     }
+
+    @Override
+    public NonMember findByPhone(String phone) {
+        return nonMemberMapper.findByPhone(phone);
+    }
 }

@@ -1,6 +1,7 @@
 package com.example.finalproject.controller;
 
 import com.example.finalproject.domain.Company;
+import com.example.finalproject.domain.Member;
 import com.example.finalproject.domain.Terminal;
 import com.example.finalproject.service.TerminalService;
 import lombok.AllArgsConstructor;
@@ -50,7 +51,7 @@ public class TerminalController {
     }
 
     @GetMapping("/findById/{terminalId}")
-    public ResponseEntity<Terminal> findById(@PathVariable int terminalId){
+    public ResponseEntity<Terminal> findByTerminalId(@PathVariable int terminalId){
         try{
             Terminal findTerminal = terminalService.findById(terminalId);
             if(findTerminal != null){
@@ -60,5 +61,12 @@ public class TerminalController {
             e.getMessage();
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+    
+    @GetMapping("/findById/{id}")
+    public ResponseEntity<String> findById(@PathVariable int id){
+        return terminalService.delete(id) == 1
+                ? new ResponseEntity<>("success", HttpStatus.OK)
+                : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

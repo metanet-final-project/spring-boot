@@ -35,7 +35,7 @@ public class QuartzConfig implements WebMvcConfigurer {
                 .build();
 
         // 스케줄러 크론 표현식으로 주기적 실행
-        scheduler.scheduleJob(annualCreateNewYearJob, trigger.apply("0 * * * * ?")); // 1초마다 실행
+        //scheduler.scheduleJob(annualCreateNewYearJob, trigger.apply("0 * * * * ?")); // 1초마다 실행
         //scheduler.scheduleJob(annualCreateNewYearJob, trigger.apply("* * * * * * ?")); // 1분마다 실행
         //scheduler.scheduleJob(annualCreateNewYearJob, trigger.apply("0 0 0 * * * ?")); // 하루마다 실행
     }
