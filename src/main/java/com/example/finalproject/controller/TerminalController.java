@@ -62,11 +62,12 @@ public class TerminalController {
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-    
-    @GetMapping("/findById/{id}")
-    public ResponseEntity<String> findById(@PathVariable int id){
-        return terminalService.delete(id) == 1
-                ? new ResponseEntity<>("success", HttpStatus.OK)
-                : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+
+    @GetMapping("/findByName/{terminalName}")
+    public ResponseEntity<List<Terminal>> findByTerminalName(@PathVariable String terminalName){
+        List<Terminal> findTerminalName = terminalService.findByName(terminalName);
+        return findTerminalName !=null ?
+                new ResponseEntity<>(findTerminalName,HttpStatus.OK):
+                new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
