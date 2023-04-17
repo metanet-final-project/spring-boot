@@ -1,11 +1,12 @@
 package com.example.finalproject.dto;
 
+import com.example.finalproject.domain.Terminal;
 import lombok.Data;
 
 @Data
 public class RouteDTO {
     private int id;
-    private TerminalDTO startTerminal;
-    private TerminalDTO endTerminal;
+    private Terminal startTerminal;
+    private Terminal endTerminal;
     private int travelTime;
 }

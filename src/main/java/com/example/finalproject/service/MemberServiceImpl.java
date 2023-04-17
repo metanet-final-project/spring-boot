@@ -1,5 +1,6 @@
 package com.example.finalproject.service;
 
+import com.example.finalproject.annotation.Trace;
 import com.example.finalproject.domain.Member;
 import com.example.finalproject.dto.LoginRequest;
 import com.example.finalproject.dto.LoginResponse;
@@ -27,6 +28,7 @@ public class MemberServiceImpl implements MemberService {
     @Autowired
     private JwtProvider jwtProvider;
 
+    @Trace
     @Override
     public LoginResponse login(LoginRequest request) throws Exception{
         Member loginMember = memberMapper.findByLoginId(request.getLoginId());
@@ -48,6 +50,7 @@ public class MemberServiceImpl implements MemberService {
         return response;
     }
 
+    @Trace
     @Override
     public int save(Member member) throws Exception{
         try {
@@ -63,31 +66,37 @@ public class MemberServiceImpl implements MemberService {
         return 1;
     }
 
+    @Trace
     @Override
     public Member findById(int memberId) {
         return memberMapper.findById(memberId);
     }
 
+    @Trace
     @Override
     public int update(Member member) {
         return memberMapper.update(member);
     }
 
+    @Trace
     @Override
     public int delete(int memberId) {
         return memberMapper.delete(memberId);
     }
 
+    @Trace
     @Override
     public Member findByLoginId(String loginId) {
         return memberMapper.findByLoginId(loginId);
     }
 
+    @Trace
     @Override
     public List<Member> findAllMember() {
         return memberMapper.findAllMember();
     }
 
+    @Trace
     @Override
     public List<Member> findByName(String name) {
         return memberMapper.findByName(name);

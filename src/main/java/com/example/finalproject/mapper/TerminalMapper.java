@@ -11,4 +11,5 @@ public interface TerminalMapper {
     public List<Terminal> findAll();
     public int update(Terminal terminal);
     public int delete(int id);
+    public Terminal findById(int id);
 }
