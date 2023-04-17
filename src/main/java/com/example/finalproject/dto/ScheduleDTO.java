@@ -19,4 +19,5 @@ public class ScheduleDTO {
     private BusDTO busDTO;
     private int price;
     private int countSeat;
+    private String date;
 }

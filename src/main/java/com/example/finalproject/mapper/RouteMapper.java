@@ -17,5 +17,6 @@ public interface RouteMapper {
     public List<Route> find(int startId); //출발 터미널로 도착 터미널 조회
 
     public List<Route> findAllByStartTerminalId(int startTerminalId);
+    public int findByStartEndPoint(Route route);
 
 }

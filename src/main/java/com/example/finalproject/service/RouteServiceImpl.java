@@ -67,4 +67,12 @@ public class RouteServiceImpl implements RouteService{
     public List<Route> find(int startId) {
         return routeMapper.find(startId);
     }
+
+    @Override
+    public int findByStartEndPoint(int startId, int endId) {
+        Route route = new Route();
+        route.setStartId(startId);
+        route.setEndId(endId);
+        return routeMapper.findByStartEndPoint(route);
+    }
 }

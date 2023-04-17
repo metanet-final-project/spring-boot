@@ -37,7 +37,11 @@
     </select>
 
     <select id="findAllByStartTerminalId" resultType="Route">
-        SELECT * FROM route WHERE start_id = #{start_id}
+        SELECT * FROM route WHERE start_id = #{startId}
+    </select>
+
+    <select id="findByStartEndPoint" parameterType="com.example.finalproject.domain.Route" resultType="int" >
+        SELECT id FROM route WHERE start_id = #{startId} AND end_id = #{endId}
     </select>
 
 </mapper>
