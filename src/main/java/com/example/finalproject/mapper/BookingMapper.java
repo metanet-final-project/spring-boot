@@ -31,5 +31,7 @@ public interface BookingMapper {
     public List<Booking> findByNonMemId(int phone);
 
 
+    public List<Booking> findValidByLoginId(String loginId);
+
     public List<Booking> findCancelByLoginId(String loginId);
 }

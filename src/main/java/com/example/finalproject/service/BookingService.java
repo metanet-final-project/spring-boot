@@ -25,5 +25,7 @@ public interface BookingService {
     public List<Booking> findByLoginId(String loginId);
     public List<Booking> findByNonMemId(int nonMemberId);
 
+    public List<Booking> findValidByLoginId(String loginId);
+
     public List<Booking> findCancelByLoginId(String loginId);
 }

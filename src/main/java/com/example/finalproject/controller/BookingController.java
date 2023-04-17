@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.awt.print.Book;
@@ -110,6 +111,15 @@ public class BookingController {
         List<Booking> findNonMemList = service.findByNonMemId(nonMemberId);
         return findNonMemList != null
                 ? new ResponseEntity<>(findNonMemList,HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+    
+    @GetMapping("/find/findValidByLoginId/{loginId}")
+    public ResponseEntity<List<Booking>> findValidByLoginId(@PathVariable String loginId){
+
+        List<Booking> findValidList = service.findValidByLoginId(loginId);
+        return findValidList != null
+                ? new ResponseEntity<>(findValidList,HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
