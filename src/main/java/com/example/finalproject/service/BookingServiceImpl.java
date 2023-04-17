@@ -66,6 +66,12 @@ public class BookingServiceImpl implements BookingService{
         return bookingMapper.findByLoginId(loginId);
     }
 
+
+    @Override
+    public List<Booking> findValidByLoginId(String loginId) {
+        return bookingMapper.findValidByLoginId(loginId);
+    }
+
     @Override
     public List<Booking> findCancelByLoginId(String loginId) {
         return bookingMapper.findCancelByLoginId(loginId);

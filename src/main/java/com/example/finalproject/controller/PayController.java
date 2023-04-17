@@ -14,7 +14,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("api/pay")
+@RequestMapping("/api/pay")
 public class PayController {
     @Autowired
     private PayService payService;

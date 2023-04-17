@@ -29,5 +29,7 @@ public interface BookingMapper {
     public List<Booking> findByPayId(int payId);
     public List<Booking> findByLoginId(String loginId);
 
+    public List<Booking> findValidByLoginId(String loginId);
+
     public List<Booking> findCancelByLoginId(String loginId);
 }
