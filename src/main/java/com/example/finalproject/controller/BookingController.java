@@ -113,6 +113,14 @@ public class BookingController {
                 ? new ResponseEntity<>(findNonMemList,HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @GetMapping("/find/findByNonMemPayId/{nonMemberId}/{payId}")
+    public ResponseEntity<List<Booking>> findByNonMemPayId(@PathVariable int nonMemberId, @PathVariable int payId){
+        List<Booking> findNonMemPayList = service.findByNonMemPayId(nonMemberId, payId);
+        return findNonMemPayList != null
+                ? new ResponseEntity<>(findNonMemPayList,HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
     
     @GetMapping("/find/findValidByLoginId/{loginId}")
     public ResponseEntity<List<Booking>> findValidByLoginId(@PathVariable String loginId){
