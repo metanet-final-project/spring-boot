@@ -12,5 +12,6 @@ public interface NonMemberMapper {
     public int update(NonMember nonMember);
     public List<NonMember> getList();
     public int get(NonMember nonMember);
+    public NonMember findByPhone(String phone);
 
 }

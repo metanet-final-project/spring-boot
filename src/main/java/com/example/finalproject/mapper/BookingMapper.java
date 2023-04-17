@@ -26,4 +26,6 @@ public interface BookingMapper {
     public List<Booking> findSeatByScheduledId(int scheduleId);
     public List<Booking> findByPayId(int payId);
     public List<Booking> findByLoginId(String loginId);
+    public List<Booking> findByNonMemId(int phone);
+
 }

@@ -9,15 +9,19 @@
         select * from route
     </select>
 
-    <insert id="save" parameterType="com.example.finalproject.domain.Route">
-        insert into route values(seq_route.nextval, #{start_id}, #{end_id}, #{travel_time})
+    <insert id="save">
+        <selectKey keyProperty="id" resultType="int" order="BEFORE">
+            SELECT seq_route.nextval FROM DUAL
+        </selectKey>
+        INSERT into route (id, start_id, end_id, travel_time)
+        VALUES (#{id},#{startId}, #{endId}, #{travelTime})
     </insert>
 
     <update id="update" parameterType="com.example.finalproject.domain.Route">
         update route set
-         start_id=#{start_id},
-         end_id=#{end_id},
-         travel_time=#{travel_time}
+         start_id=#{startId},
+         end_id=#{endId},
+         travel_time=#{travelTime}
         where id=#{id}
     </update>
 
@@ -29,7 +33,7 @@
     <select id="find" resultType="com.example.finalproject.domain.Route" parameterType="int">
         select end_id
         from route
-        where start_id = #{start_id}
+        where start_id = #{startId}
     </select>
 
 </mapper>

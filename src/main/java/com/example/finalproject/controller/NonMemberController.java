@@ -1,5 +1,6 @@
 package com.example.finalproject.controller;
 
+import com.example.finalproject.domain.Member;
 import com.example.finalproject.domain.NonMember;
 import com.example.finalproject.domain.Terminal;
 import com.example.finalproject.service.NonMemberService;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/non-member")
+@RequestMapping("api/non-member")
 @RestController
 @AllArgsConstructor
 public class NonMemberController {
@@ -46,5 +47,18 @@ public class NonMemberController {
         return nonMemberService.delete(id) == 1
                 ? new ResponseEntity<>("success", HttpStatus.OK)
                 : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @GetMapping("/findByPhone/{phone}")
+    public ResponseEntity<NonMember> findByPhone(@PathVariable String phone){
+        try {
+            NonMember findbyphone = nonMemberService.findByPhone(phone);
+            if (findbyphone != null) {
+                return new ResponseEntity<>(findbyphone, HttpStatus.OK);
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

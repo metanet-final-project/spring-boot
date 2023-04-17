@@ -1,8 +1,10 @@
 package com.example.finalproject.service;
 
 import com.example.finalproject.domain.Booking;
+import com.example.finalproject.domain.NonMember;
 import com.example.finalproject.domain.Pay;
 import com.example.finalproject.dto.PayBookingListDTO;
+import com.example.finalproject.dto.PayBookingNonMemListDTO;
 import com.example.finalproject.mapper.BookingMapper;
 import com.example.finalproject.mapper.PayMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,22 @@ public class PayServiceImpl implements  PayService{
                 }
         );
         return result;
+    }
+
+    @Override
+    public int insert(PayBookingNonMemListDTO payBookingNonMemListDTO) {
+        Pay pay = payBookingNonMemListDTO.getPay();
+        NonMember nonMember = payBookingNonMemListDTO.getNonMember();
+        List<Booking> bookingList = payBookingNonMemListDTO.getBookingList();
+
+        int result = payMapper.insert(pay);
+        bookingList.forEach(booking -> {
+                    booking.setPayId(pay.getId());
+                    bookingMapper.save(booking);
+                }
+        );
+        return result;
+
     }
 
     @Override

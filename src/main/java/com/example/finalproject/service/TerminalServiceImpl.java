@@ -32,4 +32,9 @@ public class TerminalServiceImpl implements TerminalService{
     public int delete(int id) {
         return terminalMapper.delete(id);
     }
+
+    @Override
+    public Terminal findById(int id) {
+        return terminalMapper.findById(id);
+    }
 }

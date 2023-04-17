@@ -1,6 +1,7 @@
 package com.example.finalproject.controller;
 
 import com.example.finalproject.domain.Company;
+import com.example.finalproject.domain.Member;
 import com.example.finalproject.domain.Terminal;
 import com.example.finalproject.service.TerminalService;
 import lombok.AllArgsConstructor;
@@ -44,6 +45,13 @@ public class TerminalController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> delete(@PathVariable int id) {
 
+        return terminalService.delete(id) == 1
+                ? new ResponseEntity<>("success", HttpStatus.OK)
+                : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @GetMapping("/findById/{id}")
+    public ResponseEntity<String> findById(@PathVariable int id){
         return terminalService.delete(id) == 1
                 ? new ResponseEntity<>("success", HttpStatus.OK)
                 : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);

@@ -104,4 +104,13 @@ public class BookingController {
                 : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @GetMapping("/find/findByNonMemId/{nonMemberId}")
+    public ResponseEntity<List<Booking>> findByNonMemId(@PathVariable int nonMemberId){
+
+        List<Booking> findNonMemList = service.findByNonMemId(nonMemberId);
+        return findNonMemList != null
+                ? new ResponseEntity<>(findNonMemList,HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
 }
