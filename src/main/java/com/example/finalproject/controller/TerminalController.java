@@ -62,11 +62,5 @@ public class TerminalController {
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-    
-    @GetMapping("/findById/{id}")
-    public ResponseEntity<String> findById(@PathVariable int id){
-        return terminalService.delete(id) == 1
-                ? new ResponseEntity<>("success", HttpStatus.OK)
-                : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+
 }
