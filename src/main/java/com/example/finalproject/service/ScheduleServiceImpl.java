@@ -1,12 +1,14 @@
 package com.example.finalproject.service;
 
 import com.example.finalproject.domain.Schedule;
+import com.example.finalproject.dto.RouteDTO;
 import com.example.finalproject.dto.ScheduleDTO;
 import com.example.finalproject.mapper.ScheduleMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -24,8 +26,13 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public List<ScheduleDTO> findByRouteId(int routeId) {
-        return scheduleMapper.findByRouteId(routeId);
+    public List<ScheduleDTO> findByRouteId(int routeId, String date) {
+        ScheduleDTO scheduleDTO = new ScheduleDTO();
+        RouteDTO routeDTO = new RouteDTO();
+        routeDTO.setId(routeId);
+        scheduleDTO.setRouteDTO(routeDTO);
+        scheduleDTO.setDate(date);
+        return scheduleMapper.findByRouteId(scheduleDTO);
     }
 
     @Override
@@ -52,5 +59,15 @@ public class ScheduleServiceImpl implements ScheduleService {
             scheduleMapper.save(list);
         });
         return false;
+    }
+
+    @Override
+    public List<ScheduleDTO> findAllDTO() {
+        return scheduleMapper.findAllDTO();
+    }
+
+    @Override
+    public int save(Schedule schedule) {
+        return scheduleMapper.save(schedule);
     }
 }

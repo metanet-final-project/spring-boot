@@ -57,6 +57,7 @@ public class MemberController {
     public ResponseEntity<Member> findByLoginId(@PathVariable String loginId) {
         try {
             Member findMember = memberService.findByLoginId(loginId);
+            System.out.println(findMember.toString());
             if (findMember != null) {
                 return new ResponseEntity<>(findMember, HttpStatus.OK);
             }

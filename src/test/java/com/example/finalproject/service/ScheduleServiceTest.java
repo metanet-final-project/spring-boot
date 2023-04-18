@@ -39,7 +39,7 @@ public class ScheduleServiceTest {
 
     @Test
     void findByRouteId() {
-        List<ScheduleDTO> scheduleList = scheduleService.findByRouteId(1);
+        List<ScheduleDTO> scheduleList = scheduleService.findByRouteId(1, "2023-04-12");
         assertThat(scheduleList).isNotNull();
         assertThat(scheduleList.size()).isGreaterThan(0);
     }

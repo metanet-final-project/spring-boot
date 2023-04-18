@@ -4,19 +4,21 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Booking {
     private int id;
-    private int payId;
-    private int memberId;
-    private int nonMemberId;
+    private Integer payId;
+    private Integer memberId;
+    private Integer nonMemberId;
     private int scheduleId;
     private int routeId;
     private int ageId;
     private int seatNum;
     private String state;
     private int price;
-
+    private Date bookingDate;
 }

@@ -1,18 +1,12 @@
 package com.example.finalproject.service;
 
 import com.example.finalproject.domain.*;
-import com.example.finalproject.dto.PayBookingListDTO;
-import com.example.finalproject.dto.PayDTO;
-import com.example.finalproject.dto.ScheduleDTO;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Arrays;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertNotNull;

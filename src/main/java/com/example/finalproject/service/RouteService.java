@@ -17,4 +17,5 @@ public interface RouteService {
     public List<Route> find(int startId); //출발 터미널로 도착 터미널 조회
     public List<RouteDTO> findAllByStartTerminalId(int startTerminalId);
     public List<RouteDTO> findAllDTO();
+    public int findByStartEndPoint(int startId, int endId);
 }

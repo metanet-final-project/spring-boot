@@ -25,8 +25,8 @@ public class BookingController {
     private BookingService service;
 
     @PostMapping("/save")
-    public ResponseEntity<String> save(@RequestBody Booking booking){
-        return service.save(booking) == 1 ?
+    public ResponseEntity<String> memberSave(@RequestBody Booking booking){
+        return service.memberSave(booking) == 1 ?
                 new ResponseEntity<>("OK", HttpStatus.CREATED) :
                 new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
     }
@@ -112,6 +112,14 @@ public class BookingController {
         List<Booking> findNonMemList = service.findByNonMemId(nonMemberId);
         return findNonMemList != null
                 ? new ResponseEntity<>(findNonMemList,HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @GetMapping("/find/findByNonMemPayId/{nonMemberId}/{payId}")
+    public ResponseEntity<List<Booking>> findByNonMemPayId(@PathVariable int nonMemberId, @PathVariable int payId){
+        List<Booking> findNonMemPayList = service.findByNonMemPayId(nonMemberId, payId);
+        return findNonMemPayList != null
+                ? new ResponseEntity<>(findNonMemPayList,HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
     

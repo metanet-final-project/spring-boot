@@ -10,7 +10,9 @@ import java.util.List;
 @Mapper
 public interface ScheduleMapper {
     public ScheduleDTO findById(HashMap map);
-    public List<ScheduleDTO> findByRouteId(int routeId);
+    public List<ScheduleDTO> findByRouteId(ScheduleDTO scheduleDTO);
     public int save(Schedule schedule);
     public List<Schedule> findAll();
+    public List<ScheduleDTO> findAllDTO();
+
 }

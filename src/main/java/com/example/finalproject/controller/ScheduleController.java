@@ -9,10 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 @RequestMapping("/api/schedule")
 @RestController
@@ -22,6 +19,21 @@ public class ScheduleController {
     private ScheduleService scheduleService;
 
     @Trace
+    @PostMapping("/save")
+    public ResponseEntity<Integer> save(@RequestBody Schedule schedule){
+        return scheduleService.save(schedule) == 1 ?
+                new ResponseEntity<>(scheduleService.save(schedule),HttpStatus.OK) :
+                new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @GetMapping("/findAllDTO")
+    public ResponseEntity<List<ScheduleDTO>> findAllDTO(){
+        List<ScheduleDTO> scheduleDTOList = scheduleService.findAllDTO();
+        return scheduleDTOList !=null ?
+                new ResponseEntity<>(scheduleDTOList,HttpStatus.OK):
+                new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
     @GetMapping("/find/{id}/{routeId}")
     public ResponseEntity<ScheduleDTO> findById(@PathVariable int id, @PathVariable int routeId){
         HashMap<String, Object> map = new HashMap<>();
@@ -33,10 +45,10 @@ public class ScheduleController {
                 : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @GetMapping("/find/seat/{routeId}")
-    public ResponseEntity<List<ScheduleDTO>> findByRouteId(@PathVariable int routeId){
-
-        List<ScheduleDTO> scheduleDTOList = scheduleService.findByRouteId(routeId);
+    @GetMapping("/find/seat/{routeId}/{date}")
+    public ResponseEntity<List<ScheduleDTO>> findByRouteId(@PathVariable int routeId, @PathVariable String date){
+        System.out.println(date);
+        List<ScheduleDTO> scheduleDTOList = scheduleService.findByRouteId(routeId, date);
         return scheduleDTOList != null
                 ? new ResponseEntity<>(scheduleDTOList, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

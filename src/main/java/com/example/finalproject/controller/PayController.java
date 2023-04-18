@@ -1,9 +1,8 @@
 package com.example.finalproject.controller;
 
-import com.example.finalproject.domain.Booking;
 import com.example.finalproject.domain.Pay;
 import com.example.finalproject.dto.PayBookingDTO;
-import com.example.finalproject.dto.PayBookingListDTO;
+import com.example.finalproject.dto.PayBookingNonMemListDTO;
 import com.example.finalproject.service.PayService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +19,11 @@ public class PayController {
     @Autowired
     private PayService payService;
     @PostMapping("/save")
-    public ResponseEntity<String> save(@RequestBody PayBookingListDTO payBookingListDTO){
-        System.out.println(payBookingListDTO.getPay().toString());
-        System.out.println(payBookingListDTO.getBookingList().toString());
-        return payService.insert(payBookingListDTO) == 1 ?
-                new ResponseEntity<>("OK", HttpStatus.CREATED) :
-                new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<Integer> save(@RequestBody PayBookingNonMemListDTO payBookingNonMemListDTO){
+        int payId= payService.insert(payBookingNonMemListDTO);
+        return payId !=0 ?
+                new ResponseEntity<>(payId, HttpStatus.CREATED) :
+                new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @GetMapping("/find/{id}")
@@ -43,5 +41,4 @@ public class PayController {
                 ? new ResponseEntity<>(payBookingList, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
 }

@@ -7,7 +7,8 @@ import java.util.List;
 
 @Mapper
 public interface PayMapper {
-    public int insert(Pay pay);
+    public void insert(Pay pay);
     public Pay getById(int id);
     public List<Pay> findAll();
+    public int updateTotal(Pay pay);
 }

@@ -12,17 +12,14 @@ import java.util.List;
 
 @Mapper
 public interface BookingMapper {
-    public int save(Booking booking);
+    public int memberSave(Booking booking);
+    public int nonMemberSave(Booking booking);
     public List<Booking> findAll();
-
     public List<BookingDTO> findAllDTO();
     public int update(Booking booking);
-
     public int changeBookingState(Booking booking); //예매 상태 변경
     public int delete(int id);
     public Booking findByBookingId(int id);
-
-
     public List<Booking> findByNonMemberId(int id);
     //public Schedule findAllBySeatId(int scheduled);
     public List<Booking> findSeatByScheduledId(int scheduleId);
@@ -30,7 +27,7 @@ public interface BookingMapper {
     public List<Booking> findByLoginId(String loginId);
     public List<Booking> findByNonMemId(int phone);
     public List<BookingDTO> findByPayIdDTO(int payId);
+    public List<Booking> findByNonMemPayId(int nonMemberId, int payId);
     public List<Booking> findValidByLoginId(String loginId);
-
     public List<Booking> findCancelByLoginId(String loginId);
 }

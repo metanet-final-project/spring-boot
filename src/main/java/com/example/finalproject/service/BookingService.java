@@ -9,7 +9,7 @@ import java.awt.print.Book;
 import java.util.List;
 
 public interface BookingService {
-    public int save(Booking booking);
+    public int memberSave(Booking booking);
     public List<Booking> findAll();
     public int update(Booking booking);
 
@@ -24,6 +24,7 @@ public interface BookingService {
     public List<BookingDTO> findAllDTO();
     public List<Booking> findByLoginId(String loginId);
     public List<Booking> findByNonMemId(int nonMemberId);
+    public List<Booking> findByNonMemPayId(int nonMemberId, int payId);
 
     public List<Booking> findValidByLoginId(String loginId);
 

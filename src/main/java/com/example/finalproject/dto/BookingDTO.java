@@ -2,6 +2,8 @@ package com.example.finalproject.dto;
 
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 public class BookingDTO {
     private int id;
@@ -14,4 +16,6 @@ public class BookingDTO {
     private int seatNum;
     private String state;
     private int price;
+
+    private Date bookingDate;
 }

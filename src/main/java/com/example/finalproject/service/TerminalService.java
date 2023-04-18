@@ -10,4 +10,5 @@ public interface TerminalService {
     public int update(Terminal terminal);
     public int delete(int id);
     public Terminal findById(int id);
+    public List<Terminal> findByName(String name);
 }

@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 public class PayBookingDTO {
     private int id;
-    private int cardNumber;
+    private String cardNumber;
     private String cardExpiration;
     private int cardPassword;
     private Date birth;
