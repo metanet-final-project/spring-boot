@@ -53,4 +53,14 @@ public class ScheduleServiceImpl implements ScheduleService {
         });
         return false;
     }
+
+    @Override
+    public List<ScheduleDTO> findAllDTO() {
+        return scheduleMapper.findAllDTO();
+    }
+
+    @Override
+    public int save(Schedule schedule) {
+        return scheduleMapper.save(schedule);
+    }
 }

@@ -13,4 +13,6 @@ public interface ScheduleMapper {
     public List<ScheduleDTO> findByRouteId(int routeId);
     public int save(Schedule schedule);
     public List<Schedule> findAll();
+    public List<ScheduleDTO> findAllDTO();
+
 }

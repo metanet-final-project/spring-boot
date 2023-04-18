@@ -19,13 +19,13 @@
         <association property="endTerminal" resultMap="endTerminalMap" />
     </resultMap>
 
-    <resultMap id="startTerminalMap" type="com.example.finalproject.dto.TerminalDTO">
+    <resultMap id="startTerminalMap" type="com.example.finalproject.domain.Terminal">
         <result column="st.id" property="id" />
         <result column="st.name" property="name" />
         <result column="st.location" property="location" />
     </resultMap>
 
-    <resultMap id="endTerminalMap" type="com.example.finalproject.dto.TerminalDTO">
+    <resultMap id="endTerminalMap" type="com.example.finalproject.domain.Terminal">
         <result column="et.id" property="id" />
         <result column="et.name" property="name" />
         <result column="et.location" property="location" />
@@ -74,5 +74,14 @@
 
     <select id="findAll" resultType="com.example.finalproject.domain.Schedule">
         SELECT * FROM schedule
+    </select>
+    <select id="findAllDTO" resultMap="scheduleMap">
+        SELECT s.id as "s.id", s.start_time as "s.start_time", s.end_time as "s.end_time", s.price as "s.price",
+               r.id as "r.id", r.travel_time as "r.travel_time",
+               st.id as "st.id", st.name as "st.name", st.location as "st.location", et.id as "et.id", et.name as "et.name", et.location as "et.location",
+               b.id as "b.id", b.bus_num as "b.bus_num", b.grade as "b.grade",
+               c.id as "c.id", c.name as "c.name", c.phone as "c.phone"
+        FROM schedule s, route r, terminal st, terminal et, bus b, company c
+        WHERE r.id = s.route_id AND b.id = s.bus_id AND b.company_id = c.id AND r.start_id = st.id AND r.end_id = et.id
     </select>
 </mapper>
