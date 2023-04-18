@@ -16,4 +16,8 @@
         select * from pay where id=#{id}
     </select>
 
+    <select id="findAll" resultType="Pay">
+        SELECT * FROM pay
+    </select>
+
 </mapper>

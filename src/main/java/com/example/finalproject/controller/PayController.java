@@ -2,6 +2,7 @@ package com.example.finalproject.controller;
 
 import com.example.finalproject.domain.Booking;
 import com.example.finalproject.domain.Pay;
+import com.example.finalproject.dto.PayBookingDTO;
 import com.example.finalproject.dto.PayBookingListDTO;
 import com.example.finalproject.service.PayService;
 import lombok.AllArgsConstructor;
@@ -33,6 +34,14 @@ public class PayController {
         return pay != null ?
                 new ResponseEntity<>(pay, HttpStatus.OK) :
                 new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @GetMapping("/findAll")
+    public ResponseEntity<List<PayBookingDTO>> findAll(){
+        List<PayBookingDTO> payBookingList = payService.findAll();
+        return payBookingList != null
+                ? new ResponseEntity<>(payBookingList, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }
