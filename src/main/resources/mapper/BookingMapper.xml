@@ -63,13 +63,13 @@
         <association property="endTerminal" resultMap="endTerminalMap" />
     </resultMap>
 
-    <resultMap id="startTerminalMap" type="com.example.finalproject.dto.TerminalDTO">
+    <resultMap id="startTerminalMap" type="com.example.finalproject.domain.Terminal">
         <result column="st.id" property="id" />
         <result column="st.name" property="name" />
         <result column="st.location" property="location" />
     </resultMap>
 
-    <resultMap id="endTerminalMap" type="com.example.finalproject.dto.TerminalDTO">
+    <resultMap id="endTerminalMap" type="com.example.finalproject.domain.Terminal">
         <result column="et.id" property="id" />
         <result column="et.name" property="name" />
         <result column="et.location" property="location" />
@@ -164,6 +164,20 @@
         FROM booking bo, pay p, age a, schedule s, route r, terminal st, terminal et, bus b, company c
         WHERE r.id = s.route_id AND b.id = s.bus_id AND b.company_id = c.id AND r.start_id = st.id AND r.end_id = et.id AND bo.pay_id = p.id AND bo.schedule_id = s.id AND bo.age_id = a.id
           AND p.id = #{payId}
+    </select>
+
+    <select id="findByPayIdDTO" resultMap="bookingMap">
+        SELECT bo.id as "bo.id", bo.seat_num as "bo.seat_num",bo.state as "bo.state",bo.price as "bo.price",
+        p.id as "p.id", p.card_number as "p.card_number", p.card_expiration as "p.card_expiration", p.card_password as "p.card_password", p.birth as "p.birth", p.totalprice as "p.totalprice",
+        a.id as "a.id", a.name as "a.name",
+        s.id as "s.id", s.start_time as "s.start_time", s.end_time as "s.end_time", s.price as "s.price",
+        r.id as "r.id", r.travel_time as "r.travel_time",
+        st.id as "st.id", st.name as "st.name", st.location as "st.location", et.id as "et.id", et.name as "et.name", et.location as "et.location",
+        b.id as "b.id", b.bus_num as "b.bus_num", b.grade as "b.grade",
+        c.id as "c.id", c.name as "c.name", c.phone as "c.phone"
+        FROM booking bo, pay p, age a, schedule s, route r, terminal st, terminal et, bus b, company c
+        WHERE r.id = s.route_id AND b.id = s.bus_id AND b.company_id = c.id AND r.start_id = st.id AND r.end_id = et.id AND bo.pay_id = p.id AND bo.schedule_id = s.id AND bo.age_id = a.id
+        AND p.id = #{payId}
     </select>
 
     <select id="findByLoginId" parameterType="String" resultMap="bookingMap">

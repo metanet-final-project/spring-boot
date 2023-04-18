@@ -91,4 +91,9 @@ public class BookingServiceImpl implements BookingService{
     public List<BookingDTO> findAllDTO() {
         return bookingMapper.findAllDTO();
     }
+
+    @Override
+    public List<BookingDTO> findByPayIdDTO(int payId) {
+        return bookingMapper.findByPayIdDTO(payId);
+    }
 }

@@ -8,5 +8,6 @@ public class RouteDTO {
     private int id;
     private Terminal startTerminal;
     private Terminal endTerminal;
+
     private int travelTime;
 }

@@ -1,5 +1,6 @@
 package com.example.finalproject.controller;
 
+import com.example.finalproject.annotation.Trace;
 import com.example.finalproject.domain.Booking;
 import com.example.finalproject.domain.NonMember;
 import com.example.finalproject.dto.BookingDTO;
@@ -129,5 +130,13 @@ public class BookingController {
         return findCancelList != null
                 ? new ResponseEntity<>(findCancelList,HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @GetMapping("/find/findByPayIdDTO/{payId}")
+    public ResponseEntity<List<BookingDTO>> findByPayIdDTO(@PathVariable int payId){
+        List<BookingDTO> bookingDTOList = service.findByPayIdDTO(payId);
+        return bookingDTOList != null
+                ? new ResponseEntity<>(bookingDTOList, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

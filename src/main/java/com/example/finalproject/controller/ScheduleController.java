@@ -1,5 +1,6 @@
 package com.example.finalproject.controller;
 
+import com.example.finalproject.annotation.Trace;
 import com.example.finalproject.domain.Schedule;
 import com.example.finalproject.dto.ScheduleDTO;
 import com.example.finalproject.service.ScheduleService;
@@ -20,6 +21,7 @@ public class ScheduleController {
 
     private ScheduleService scheduleService;
 
+    @Trace
     @GetMapping("/find/{id}/{routeId}")
     public ResponseEntity<ScheduleDTO> findById(@PathVariable int id, @PathVariable int routeId){
         HashMap<String, Object> map = new HashMap<>();

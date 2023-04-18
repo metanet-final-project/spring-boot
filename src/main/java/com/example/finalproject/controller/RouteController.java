@@ -76,7 +76,11 @@ public class RouteController {
                 : new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-
-
-
+    @GetMapping("/findAll")
+    public ResponseEntity<List<RouteDTO>>findAllDTO(){
+        List<RouteDTO> routeDTOList = routeService.findAllDTO();
+        return routeDTOList != null
+                ? new ResponseEntity<>(routeDTOList, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }

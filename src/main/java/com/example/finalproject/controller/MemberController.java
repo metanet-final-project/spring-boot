@@ -68,8 +68,9 @@ public class MemberController {
 
     @DeleteMapping("/member/delete/{memberId}")
     public ResponseEntity<Integer> delete(@PathVariable int memberId){
-        return memberService.delete(memberId) == 1 ?
-                new ResponseEntity<>(memberService.delete(memberId),HttpStatus.OK) :
+        boolean result = memberService.delete(memberId) == 1;
+        return result == true ?
+                new ResponseEntity<>(1 ,HttpStatus.OK) :
                 new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
