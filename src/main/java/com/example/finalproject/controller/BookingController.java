@@ -24,8 +24,8 @@ public class BookingController {
     private BookingService service;
 
     @PostMapping("/save")
-    public ResponseEntity<String> save(@RequestBody Booking booking){
-        return service.save(booking) == 1 ?
+    public ResponseEntity<String> memberSave(@RequestBody Booking booking){
+        return service.memberSave(booking) == 1 ?
                 new ResponseEntity<>("OK", HttpStatus.CREATED) :
                 new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
     }

@@ -4,13 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.finalproject.mapper.PayMapper">
 
-    <insert id="insert">
-        <selectKey keyProperty="id" resultType="int" order="BEFORE">
-            SELECT seq_pay.nextval FROM DUAL
-        </selectKey>
+    <insert id="insert" parameterType="com.example.finalproject.domain.Pay" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
         INSERT into pay
-        VALUES (#{id},#{cardNumber}, #{cardExpiration}, #{cardPassword}, #{birth}, #{totalPrice})
-    </insert>
+            VALUES (seq_pay.nextval,#{cardNumber}, #{cardExpiration}, #{cardPassword}, #{birth}, #{totalPrice})
+</insert>
 
     <select id="getById" resultType="com.example.finalproject.domain.Pay">
         select * from pay where id=#{id}

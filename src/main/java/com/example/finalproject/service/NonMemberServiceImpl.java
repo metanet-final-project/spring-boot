@@ -16,7 +16,13 @@ public class NonMemberServiceImpl implements  NonMemberService{
 
     @Override
     public int insert(NonMember nonMember) {
-        return nonMemberMapper.insert(nonMember);
+        NonMember insertNon = new NonMember();
+        nonMemberMapper.insert(nonMember);
+        if(insertNon.getId() == null) {
+            return 0;
+        }else {
+            return 1;
+        }
     }
 
 

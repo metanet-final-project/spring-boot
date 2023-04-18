@@ -20,8 +20,8 @@ public class BookingServiceImpl implements BookingService{
     private NonMemberMapper nonMemberMapper;
 
     @Override
-    public int save(Booking booking) {
-        return bookingMapper.save(booking);
+    public int memberSave(Booking booking) {
+        return bookingMapper.memberSave(booking);
     }
 
     @Override

@@ -89,14 +89,15 @@
     </resultMap>
 
 
-
-    <insert id="save">
-        <selectKey keyProperty="id" resultType="int" order="BEFORE">
-            SELECT seq_member.nextval FROM DUAL
-        </selectKey>
+    <insert id="memberSave" parameterType="com.example.finalproject.domain.Booking">
         insert into booking
-        values(#{id},#{payId},#{memberId},#{nonMemberId},#{scheduleId},#{routeId},#{ageId},#{seatNum},#{state},#{price})
+        values(seq_booking.nextval,#{payId},#{memberId},null,#{scheduleId},#{routeId},#{ageId},#{seatNum},#{state},#{price})
     </insert>
+    <insert id="nonMemberSave" parameterType="com.example.finalproject.domain.Booking">
+        insert into booking
+        values(seq_booking.nextval,#{payId},null,#{nonMemberId},#{scheduleId},#{routeId},#{ageId},#{seatNum},#{state},#{price})
+     </insert>
+
 
     <select id="findAll" resultType="com.example.finalproject.domain.Booking">
         select * from booking

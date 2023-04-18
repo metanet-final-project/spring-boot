@@ -10,7 +10,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class NonMember {
-    private int id;
+    private Integer id;
     private String phone;
     private Date birth;
 

@@ -12,7 +12,8 @@ import java.util.List;
 
 @Mapper
 public interface BookingMapper {
-    public int save(Booking booking);
+    public int memberSave(Booking booking);
+    public int nonMemberSave(Booking booking);
     public List<Booking> findAll();
 
     public List<BookingDTO> findAllDTO();

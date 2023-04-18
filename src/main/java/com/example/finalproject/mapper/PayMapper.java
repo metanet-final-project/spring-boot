@@ -5,6 +5,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface PayMapper {
-    public int insert(Pay pay);
+    public void insert(Pay pay);
     public Pay getById(int id);
 }

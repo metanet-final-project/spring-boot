@@ -43,32 +43,32 @@ public class PayServiceImpl implements  PayService{
 //        return result;
 //    }
 
-    @Transactional
+
     @Trace
     @Override
+    @Transactional
     public int insert(PayBookingNonMemListDTO payBookingNonMemListDTO) {
         Pay pay = payBookingNonMemListDTO.getPay();
         NonMember nonMember = payBookingNonMemListDTO.getNonMember();
         List<Booking> bookingList = payBookingNonMemListDTO.getBookingList();
-
-        int result = payMapper.insert(pay);
-        if(nonMember.getPhone() != null){
-            int insert = nonMemberMapper.insert(nonMember);
+        System.out.println(pay.toString());
+        payMapper.insert(pay);
+        System.out.println(pay);
+        if(nonMember.getPhone() == null || nonMember.getPhone() == "" || nonMember.getBirth() == null){
+            bookingList.forEach(booking -> {
+                booking.setPayId(pay.getId());
+                System.out.println(booking);
+                bookingMapper.memberSave(booking);
+            });
+        }else {//비회원
+            nonMemberMapper.insert(nonMember);
             bookingList.forEach(booking -> {
                 booking.setPayId(pay.getId());
                 booking.setNonMemberId(nonMember.getId());
-                bookingMapper.save(booking);
-
+                bookingMapper.nonMemberSave(booking);
             });
-            return result;
-        }else{
-            bookingList.forEach(booking -> {
-                booking.setPayId(pay.getId());
-                bookingMapper.save(booking);
-            });
-            return result;
         }
-
+        return pay.getId();
     }
 
     @Override

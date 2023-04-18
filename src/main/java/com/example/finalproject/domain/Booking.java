@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Booking {
     private int id;
-    private int payId;
-    private int memberId;
-    private int nonMemberId;
+    private Integer payId;
+    private Integer memberId;
+    private Integer nonMemberId;
     private int scheduleId;
     private int routeId;
     private int ageId;

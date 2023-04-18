@@ -20,12 +20,11 @@ public class PayController {
     @Autowired
     private PayService payService;
     @PostMapping("/save")
-    public ResponseEntity<String> save(@RequestBody PayBookingNonMemListDTO payBookingNonMemListDTO){
-        System.out.println(payBookingNonMemListDTO.getPay().toString());
-        System.out.println(payBookingNonMemListDTO.getBookingList().toString());
-        return payService.insert(payBookingNonMemListDTO) == 1 ?
-                new ResponseEntity<>("OK", HttpStatus.CREATED) :
-                new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<Integer> save(@RequestBody PayBookingNonMemListDTO payBookingNonMemListDTO){
+        int payId= payService.insert(payBookingNonMemListDTO);
+        return payId !=0 ?
+                new ResponseEntity<>(payId, HttpStatus.CREATED) :
+                new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @GetMapping("/find/{id}")

@@ -7,7 +7,7 @@ import java.util.List;
 
 @Mapper
 public interface NonMemberMapper {
-    public int insert(NonMember nonMember);
+    public void insert(NonMember nonMember);
     public int delete(int id);
     public int update(NonMember nonMember);
     public List<NonMember> getList();
