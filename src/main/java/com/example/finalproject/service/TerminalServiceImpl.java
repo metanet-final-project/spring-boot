@@ -19,6 +19,11 @@ public class TerminalServiceImpl implements TerminalService{
     }
 
     @Override
+    public List<Terminal> findByName(String name) {
+        return terminalMapper.findByName(name);
+    }
+
+    @Override
     public int save(Terminal terminal) {
         return terminalMapper.save(terminal);
     }

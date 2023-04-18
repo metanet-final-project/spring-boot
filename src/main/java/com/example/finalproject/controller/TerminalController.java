@@ -63,4 +63,11 @@ public class TerminalController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @GetMapping("/findByName/{terminalName}")
+    public ResponseEntity<List<Terminal>> findByTerminalName(@PathVariable String terminalName){
+        List<Terminal> findTerminalName = terminalService.findByName(terminalName);
+        return findTerminalName !=null ?
+                new ResponseEntity<>(findTerminalName,HttpStatus.OK):
+                new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }

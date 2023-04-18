@@ -17,6 +17,21 @@ public class ScheduleController {
 
     private ScheduleService scheduleService;
 
+    @PostMapping("/save")
+    public ResponseEntity<Integer> save(@RequestBody Schedule schedule){
+        return scheduleService.save(schedule) == 1 ?
+                new ResponseEntity<>(scheduleService.save(schedule),HttpStatus.OK) :
+                new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @GetMapping("/findAllDTO")
+    public ResponseEntity<List<ScheduleDTO>> findAllDTO(){
+        List<ScheduleDTO> scheduleDTOList = scheduleService.findAllDTO();
+        return scheduleDTOList !=null ?
+                new ResponseEntity<>(scheduleDTOList,HttpStatus.OK):
+                new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
     @GetMapping("/find/{id}/{routeId}")
     public ResponseEntity<ScheduleDTO> findById(@PathVariable int id, @PathVariable int routeId){
         HashMap<String, Object> map = new HashMap<>();

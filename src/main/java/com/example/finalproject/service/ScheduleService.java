@@ -1,6 +1,6 @@
 package com.example.finalproject.service;
 
-import com.example.finalproject.domain.Route;
+import com.example.finalproject.domain.Schedule;
 import com.example.finalproject.dto.ScheduleDTO;
 
 import java.util.Date;
@@ -11,4 +11,6 @@ public interface ScheduleService {
     public ScheduleDTO findById(HashMap map);
     public List<ScheduleDTO> findByRouteId(int routeId, String date);
     public boolean createDailySchedule();
+    public List<ScheduleDTO> findAllDTO();
+    public int save(Schedule schedule);
 }
