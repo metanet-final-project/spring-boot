@@ -75,4 +75,19 @@ public class PayServiceImpl implements  PayService{
     public Pay getById(int id) {
         return payMapper.getById(id);
     }
+
+    @Override
+    public int updateTotal(int payId, int bookingId) {
+        Pay pay = payMapper.getById(payId);
+
+        Booking booking = bookingMapper.findByBookingId(bookingId);
+        int priceDifference = -booking.getPrice();
+
+        pay.setTotalPrice(pay.getTotalPrice() + priceDifference);
+
+        return payMapper.updateTotal(pay);
+
+
+    }
+
 }

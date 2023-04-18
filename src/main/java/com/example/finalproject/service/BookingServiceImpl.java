@@ -5,8 +5,10 @@ import com.example.finalproject.domain.NonMember;
 import com.example.finalproject.dto.BookingDTO;
 import com.example.finalproject.mapper.BookingMapper;
 import com.example.finalproject.mapper.NonMemberMapper;
+import com.example.finalproject.mapper.PayMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -18,6 +20,10 @@ public class BookingServiceImpl implements BookingService{
 
     @Autowired
     private NonMemberMapper nonMemberMapper;
+
+    @Autowired
+    private PayService payService;
+
 
     @Override
     public int memberSave(Booking booking) {
@@ -35,8 +41,14 @@ public class BookingServiceImpl implements BookingService{
     }
 
     @Override
+    @Transactional
     public int changeBookingState(Booking booking) {
-        return bookingMapper.changeBookingState(booking);
+        int result = bookingMapper.changeBookingState(booking);
+        Booking getBooking = bookingMapper.findByBookingId(booking.getId());
+        if(payService.updateTotal(getBooking.getPayId(), getBooking.getId()) == 1) {
+            return result;
+        }
+        return 0;
     }
 
     @Override

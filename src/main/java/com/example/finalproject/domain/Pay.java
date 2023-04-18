@@ -13,7 +13,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class Pay {
     private int id;
-    private int cardNumber;
+    private String cardNumber;
     private String cardExpiration;
     private int cardPassword;
     private Date birth;
