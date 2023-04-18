@@ -16,4 +16,5 @@ public interface RouteService {
     public int delete(int id);
     public List<Route> find(int startId); //출발 터미널로 도착 터미널 조회
     public List<RouteDTO> findAllByStartTerminalId(int startTerminalId);
+    public int findByStartEndPoint(int startId, int endId);
 }

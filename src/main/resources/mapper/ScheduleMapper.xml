@@ -55,16 +55,21 @@
                     AND s.id = #{id} AND s.route_id = #{routeId}
     </select>
 
-    <select id="findByRouteId" parameterType="Hashmap" resultMap="scheduleMap">
+    <select id="findByRouteId" parameterType="com.example.finalproject.dto.ScheduleDTO" resultMap="scheduleMap">
         SELECT s.id as "s.id", s.start_time as "s.start_time", s.end_time as "s.end_time", s.price as "s.price",
-        r.id as "r.id", r.travel_time as "r.travel_time",
-        st.id as "st.id", st.name as "st.name", st.location as "st.location", et.id as "et.id", et.name as "et.name", et.location as "et.location",
-        b.id as "b.id", b.bus_num as "b.bus_num", b.grade as "b.grade",
-        c.id as "c.id", c.name as "c.name", c.phone as "c.phone", COUNT(bo.id) as "count"
-            FROM schedule s, route r, terminal st, terminal et, bus b, company c, booking bo
-                WHERE s.id = bo.schedule_id AND r.id = s.route_id AND b.id = s.bus_id AND b.company_id = c.id AND r.start_id = st.id AND r.end_id = et.id
-                    AND s.route_id = 1
-                        GROUP BY s.id, s.start_time, s.end_time, s.price, r.id, r.travel_time, st.id, st.name, st.location, et.id, et.name, et.location,
+            r.id as "r.id", r.travel_time as "r.travel_time",
+            st.id as "st.id", st.name as "st.name", st.location as "st.location", et.id as "et.id", et.name as "et.name", et.location as "et.location",
+            b.id as "b.id", b.bus_num as "b.bus_num", b.grade as "b.grade",
+            c.id as "c.id", c.name as "c.name", c.phone as "c.phone", COUNT(bo.id) as "count"
+                FROM schedule s
+                    JOIN route r ON r.id = s.route_id
+                    JOIN terminal st ON r.start_id = st.id
+                    JOIN terminal et ON r.end_id = et.id
+                    JOIN bus b ON b.id = s.bus_id
+                    JOIN company c ON b.company_id = c.id
+                    LEFT JOIN booking bo ON s.id = bo.schedule_id
+                        WHERE s.route_id = #{routeDTO.id} AND TRUNC(s.start_time) = TO_DATE(#{date}, 'YYYY-MM-DD')
+                            GROUP BY s.id, s.start_time, s.end_time, s.price, r.id, r.travel_time, st.id, st.name, st.location, et.id, et.name, et.location,
                                 b.id, b.bus_num, b.grade, c.id, c.name, c.phone
     </select>
 

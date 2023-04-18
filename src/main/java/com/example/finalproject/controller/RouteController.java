@@ -76,7 +76,13 @@ public class RouteController {
                 : new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-
+    @GetMapping("find/start-end/point/{startId}/{endId}")
+    public ResponseEntity<Integer> findByStartEndPoint(@PathVariable int startId, @PathVariable int endId){
+        Integer id = routeService.findByStartEndPoint(startId, endId);
+        return id != null
+                ? new ResponseEntity<>(id, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 
 
 }
