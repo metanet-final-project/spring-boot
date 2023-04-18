@@ -16,4 +16,10 @@
         select * from pay where id=#{id}
     </select>
 
+    <update id="updateTotal" parameterType="com.example.finalproject.domain.Pay">
+        update pay set
+            totalprice = #{totalPrice}
+        where id = #{id}
+    </update>
+
 </mapper>

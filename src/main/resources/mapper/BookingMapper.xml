@@ -7,6 +7,7 @@
         <result column="bo.seat_num" property="seatNum"/>
         <result column="bo.state" property="state"/>
         <result column="bo.price" property="price"/>
+        <result column="bo.booking_date" property="bookingDate"/>
         <association property="memberDTO" resultMap="memberMap"/>
         <association property="nonMemberDTO" resultMap="nonMemberMap"/>
         <association property="payDTO" resultMap="payMap"/>
@@ -63,13 +64,13 @@
         <association property="endTerminal" resultMap="endTerminalMap" />
     </resultMap>
 
-    <resultMap id="startTerminalMap" type="com.example.finalproject.dto.TerminalDTO">
+    <resultMap id="startTerminalMap" type="com.example.finalproject.domain.Terminal">
         <result column="st.id" property="id" />
         <result column="st.name" property="name" />
         <result column="st.location" property="location" />
     </resultMap>
 
-    <resultMap id="endTerminalMap" type="com.example.finalproject.dto.TerminalDTO">
+    <resultMap id="endTerminalMap" type="com.example.finalproject.domain.Terminal">
         <result column="et.id" property="id" />
         <result column="et.name" property="name" />
         <result column="et.location" property="location" />
@@ -95,7 +96,7 @@
             SELECT seq_member.nextval FROM DUAL
         </selectKey>
         insert into booking
-        values(#{id},#{payId},#{memberId},#{nonMemberId},#{scheduleId},#{routeId},#{ageId},#{seatNum},#{state},#{price})
+        values(#{id},#{payId},#{memberId},#{nonMemberId},#{scheduleId},#{routeId},#{ageId},#{seatNum},#{state},#{price},#{bookingDate})
     </insert>
 
     <select id="findAll" resultType="com.example.finalproject.domain.Booking">
@@ -104,12 +105,13 @@
 
     <update id="changeBookingState">
         update booking set
-            state = #{state}
+            state = #{state},
+            booking_date = sysdate
         where id = #{id}
     </update>
 
     <select id="findAllDTO" resultMap="bookingMap">
-        SELECT bo.id as "bo.id", bo.seat_num as "bo.seat_num",bo.state as "bo.state",bo.price as "bo.price", m.login_id as "m.login_id", m.name as "m.name", m.password as "m.password", m.phone as "m.phone", m.role as "m.role", m.email as "m.email", m.birth as "m.birth",
+        SELECT bo.id as "bo.id", bo.seat_num as "bo.seat_num",bo.state as "bo.state",bo.price as "bo.price", m.login_id as "m.login_id", bo.booking_date as "bo.booking_date", m.name as "m.name", m.password as "m.password", m.phone as "m.phone", m.role as "m.role", m.email as "m.email", m.birth as "m.birth",
                p.id as "p.id", p.card_number as "p.card_number", p.card_expiration as "p.card_expiration", p.card_password as "p.card_password", p.birth as "p.birth", p.totalprice as "p.totalprice",
                a.id as "a.id", a.name as "a.name",
                s.id as "s.id", s.start_time as "s.start_time", s.end_time as "s.end_time", s.price as "s.price",
@@ -133,7 +135,8 @@
                            age_id = #{ageId},
                            seat_num = #{seatNum},
                            state = #{state},
-                           price = #{price}
+                           price = #{price},
+                           booking_date = #{bookingDate}
         where id = #{id}
     </update>
 
@@ -153,7 +156,7 @@
     </select>
 
     <select id="findByPayId" parameterType="com.example.finalproject.domain.Booking" resultMap="bookingMap">
-        SELECT bo.id as "bo.id", bo.seat_num as "bo.seat_num",bo.state as "bo.state",bo.price as "bo.price",
+        SELECT bo.id as "bo.id", bo.seat_num as "bo.seat_num",bo.state as "bo.state",bo.price as "bo.price", bo.booking_date as "bo.booking_date",
                p.id as "p.id", p.card_number as "p.card_number", p.card_expiration as "p.card_expiration", p.card_password as "p.card_password", p.birth as "p.birth", p.totalprice as "p.totalprice",
                a.id as "a.id", a.name as "a.name",
                s.id as "s.id", s.start_time as "s.start_time", s.end_time as "s.end_time", s.price as "s.price",
@@ -167,7 +170,7 @@
     </select>
 
     <select id="findByLoginId" parameterType="String" resultMap="bookingMap">
-        SELECT bo.id as "bo.id", bo.seat_num as "bo.seat_num",bo.state as "bo.state",bo.price as "bo.price", m.login_id as "m.login_id", m.name as "m.name", m.password as "m.password", m.phone as "m.phone", m.role as "m.role", m.email as "m.email", m.birth as "m.birth",
+        SELECT bo.id as "bo.id", bo.seat_num as "bo.seat_num",bo.state as "bo.state",bo.price as "bo.price",bo.booking_date as "bo.booking_date", m.login_id as "m.login_id", m.name as "m.name", m.password as "m.password", m.phone as "m.phone", m.role as "m.role", m.email as "m.email", m.birth as "m.birth",
                p.id as "p.id", p.card_number as "p.card_number", p.card_expiration as "p.card_expiration", p.card_password as "p.card_password", p.birth as "p.birth", p.totalprice as "p.totalprice",
                a.id as "a.id", a.name as "a.name",
                s.id as "s.id", s.start_time as "s.start_time", s.end_time as "s.end_time", s.price as "s.price",
@@ -182,7 +185,7 @@
     </select>
 
     <select id="findValidByLoginId" parameterType="String" resultMap="bookingMap">
-        SELECT bo.id as "bo.id", bo.seat_num as "bo.seat_num",bo.state as "bo.state",bo.price as "bo.price", m.login_id as "m.login_id",
+        SELECT bo.id as "bo.id", bo.seat_num as "bo.seat_num",bo.state as "bo.state",bo.price as "bo.price", bo.booking_date as "bo.booking_date", m.login_id as "m.login_id",
                p.id as "p.id", p.card_number as "p.card_number", p.card_expiration as "p.card_expiration", p.card_password as "p.card_password", p.birth as "p.birth", p.totalprice as "p.totalprice",
                a.id as "a.id", a.name as "a.name",
                s.id as "s.id", s.start_time as "s.start_time", s.end_time as "s.end_time", s.price as "s.price",
@@ -197,7 +200,7 @@
     </select>
 
     <select id="findByNonMemId" parameterType="int" resultMap="bookingMap">
-        SELECT bo.id as "bo.id", bo.seat_num as "bo.seat_num",bo.state as "bo.state",bo.price as "bo.price", nm.id as "nm.id", nm.phone as "nm.phone", nm.birth as "nm.birth",
+        SELECT bo.id as "bo.id", bo.seat_num as "bo.seat_num",bo.state as "bo.state",bo.price as "bo.price", bo.booking_date as "bo.booking_date", nm.id as "nm.id", nm.phone as "nm.phone", nm.birth as "nm.birth",
                 p.id as "p.id", p.card_number as "p.card_number", p.card_expiration as "p.card_expiration", p.card_password as "p.card_password", p.birth as "p.birth", p.totalprice as "p.totalprice",
                 a.id as "a.id", a.name as "a.name",
                 s.id as "s.id", s.start_time as "s.start_time", s.end_time as "s.end_time", s.price as "s.price",
@@ -210,7 +213,7 @@
                     AND bo.non_member_id = nm.id AND non_member_id = #{nonMemberId}
     </select>
     <select id="findCancelByLoginId" parameterType="String" resultMap="bookingMap">
-        SELECT bo.id as "bo.id", bo.seat_num as "bo.seat_num",bo.state as "bo.state",bo.price as "bo.price", m.login_id as "m.login_id",
+        SELECT bo.id as "bo.id", bo.seat_num as "bo.seat_num",bo.state as "bo.state",bo.price as "bo.price", bo.booking_date as "bo.booking_date",m.login_id as "m.login_id",
                 p.id as "p.id", p.card_number as "p.card_number", p.card_expiration as "p.card_expiration", p.card_password as "p.card_password", p.birth as "p.birth", p.totalprice as "p.totalprice",
                 a.id as "a.id", a.name as "a.name",
                 s.id as "s.id", s.start_time as "s.start_time", s.end_time as "s.end_time", s.price as "s.price",
