@@ -4,7 +4,7 @@
 
     <insert id="save" parameterType="com.example.finalproject.domain.Lost">
         insert into
-        lost values(seq_lost.nextval,#{title},#{findPlace},#{savePlace},#{contents},#{findDate},#{fileName},#{phone})
+        lost values(seq_lost.nextval,#{title},#{findPlace},#{contents},#{findDate},#{fileName})
     </insert>
 
     <delete id="delete">
@@ -15,11 +15,9 @@
         update lost set
         title = #{title},
         find_place = #{findPlace},
-        save_place = #{savePlace},
         contents = #{contents},
         find_date = #{findDate},
-        file_name = #{fileName},
-        phone = #{phone}
+        file_name = #{fileName}
         where id = #{id}
     </update>
 
@@ -30,5 +28,10 @@
     <select id="findAll" resultType="com.example.finalproject.domain.Lost">
         SELECT * FROM lost
     </select>
+
+    <select id="findById" resultType="com.example.finalproject.domain.Lost">
+        SELECT * FROM lost WHERE id = #{id}
+    </select>
+
 
 </mapper>

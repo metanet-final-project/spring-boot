@@ -13,9 +13,8 @@ public class Lost {
     private int id;
     private String title;
     private String findPlace;
-    private String savePlace;
     private String contents;
     private Date findDate;
     private String fileName;
-    private String phone;
+
 }

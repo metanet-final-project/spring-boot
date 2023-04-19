@@ -47,7 +47,12 @@ public class LostController {
                 new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-
-
+    @GetMapping("/findById/{id}")
+    public ResponseEntity<Lost> findById(@PathVariable int id){
+        Lost lost = lostService.findById(id);
+        return lost !=null ?
+                new ResponseEntity<>(lost,HttpStatus.OK):
+                new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 
 }
