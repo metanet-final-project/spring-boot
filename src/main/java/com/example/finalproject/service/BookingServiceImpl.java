@@ -61,6 +61,10 @@ public class BookingServiceImpl implements BookingService{
         return bookingMapper.findByBookingId(id);
     }
 
+    @Override
+    public BookingDTO findTicketByBookingId(int id) {
+        return bookingMapper.findTicketByBookingId(id);
+    }
 
     @Override
     public List<Booking> findByNonMemberId(NonMember nonMember) {
