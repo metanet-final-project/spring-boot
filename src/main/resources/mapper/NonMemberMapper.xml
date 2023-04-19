@@ -37,7 +37,7 @@
 
     <select id="findByInfo" parameterType="com.example.finalproject.domain.NonMember" resultType="com.example.finalproject.domain.NonMember" >
         SELECT * FROM non_member
-            WHERE phone = #{phone} AND TRUNC(birth) = TO_DATE(#{birth}, 'YYYY-MM-DD')
+            WHERE phone = #{phone} AND TRUNC(birth) = TO_DATE(#{birthStr}, 'YYYY-MM-DD')
     </select>
 
 </mapper>

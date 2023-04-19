@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 import org.springframework.context.annotation.Import;
 
 
-//@Import(TraceAspect.class)
+@Import(TraceAspect.class)
 @SpringBootApplication
 public class FinalProjectApplication {
 
