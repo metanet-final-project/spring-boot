@@ -6,7 +6,11 @@ import com.example.finalproject.service.LostService;
 import com.example.finalproject.upload.FileUploadUtil;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +19,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -22,7 +28,7 @@ import java.util.stream.Stream;
 
 @Log4j2
 @RestController
-@RequestMapping("/api/")
+@RequestMapping("/api")
 public class FileUploadController {
 
     @Autowired
@@ -56,6 +62,15 @@ public class FileUploadController {
 
             throw new RuntimeException("Fail to upload files.");
         }
+    }
+
+    @GetMapping(value = "/getImage/{filename}", produces = MediaType.IMAGE_PNG_VALUE)
+    public ResponseEntity<byte[]> getImage(@PathVariable String filename) throws IOException {
+        //경로 수정예정
+        Resource resource = new FileSystemResource("C:/Users/Samsung/Pictures/Screenshots/" + filename);
+        Path path = Paths.get(resource.getURI());
+        byte[] bytes = Files.readAllBytes(path);
+        return ResponseEntity.ok().contentType(MediaType.IMAGE_PNG).body(bytes);
     }
 
     @PostMapping("/upload")
