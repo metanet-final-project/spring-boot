@@ -171,7 +171,7 @@
     </select>
 
     <select id="findByPayIdDTO" resultMap="bookingMap">
-        SELECT bo.id as "bo.id", bo.seat_num as "bo.seat_num", bo.state as "bo.state", bo.price as "bo.price",
+        SELECT bo.id as "bo.id", bo.seat_num as "bo.seat_num", bo.state as "bo.state", bo.price as "bo.price", bo.booking_date as "bo.booking_date",
         p.id as "p.id", p.card_number as "p.card_number", p.card_expiration as "p.card_expiration", p.card_password as "p.card_password", p.birth as "p.birth", p.totalprice as "p.totalprice",
         a.id as "a.id", a.name as "a.name",
         s.id as "s.id", s.start_time as "s.start_time", s.end_time as "s.end_time", s.price as "s.price",
