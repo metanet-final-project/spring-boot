@@ -25,7 +25,6 @@ public class NonMemberServiceImpl implements  NonMemberService{
         }
     }
 
-
     @Override
     public int update(NonMember nonMember) {
         return nonMemberMapper.update(nonMember);
@@ -43,5 +42,10 @@ public class NonMemberServiceImpl implements  NonMemberService{
     @Override
     public NonMember findByPhone(String phone) {
         return nonMemberMapper.findByPhone(phone);
+    }
+
+    @Override
+    public NonMember findByInfo(NonMember nonMember) {
+        return nonMemberMapper.findByInfo(nonMember);
     }
 }

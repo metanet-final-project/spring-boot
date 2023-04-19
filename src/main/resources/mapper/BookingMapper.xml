@@ -284,6 +284,6 @@
 
     <select id="findSeatByScheduledId" resultType="com.example.finalproject.domain.Booking">
         select * from booking
-            where schedule_id = #{scheduleId}
+            where schedule_id = #{scheduleId} AND state = '결제완료'
     </select>
 </mapper>
