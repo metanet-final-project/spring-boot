@@ -81,6 +81,7 @@
     <select id="findAll" resultType="com.example.finalproject.domain.Schedule">
         SELECT * FROM schedule
     </select>
+
     <select id="findAllDTO" resultMap="scheduleMap">
         SELECT s.id as "s.id", s.start_time as "s.start_time", s.end_time as "s.end_time", s.price as "s.price",
                r.id as "r.id", r.travel_time as "r.travel_time",
@@ -89,5 +90,9 @@
                c.id as "c.id", c.name as "c.name", c.phone as "c.phone"
         FROM schedule s, route r, terminal st, terminal et, bus b, company c
         WHERE r.id = s.route_id AND b.id = s.bus_id AND b.company_id = c.id AND r.start_id = st.id AND r.end_id = et.id
+    </select>
+
+    <select id="findDaily" resultType="com.example.finalproject.domain.Schedule">
+        SELECT * FROM schedule WHERE trunc(start_time) = TO_DATE(#{date}, 'YYYY-MM-DD')
     </select>
 </mapper>
