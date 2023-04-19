@@ -74,6 +74,17 @@ public class BookingController {
                 new ResponseEntity<>(byBookingId, HttpStatus.OK) :
                 new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @GetMapping("/find/findTicketByBookingId/{id}")
+    public ResponseEntity<BookingDTO> findTicketByBookingId(@PathVariable int id){
+        BookingDTO bookingDTO = service.findTicketByBookingId(id);
+        return bookingDTO != null ?
+                new ResponseEntity<>(bookingDTO, HttpStatus.OK) :
+                new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+
+
     @GetMapping("find/non-member")
     public ResponseEntity<List<Booking>> findByNonMemberId(NonMember nonMember){
         List<Booking> bookingList = service.findByNonMemberId(nonMember);
