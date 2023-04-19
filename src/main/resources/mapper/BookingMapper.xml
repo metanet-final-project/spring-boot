@@ -246,7 +246,7 @@
                  JOIN company c ON b.company_id = c.id
                  JOIN non_member nm ON bo.non_member_id = nm.id
         WHERE non_member_id = #{nonMemberId}
-        GROUP BY p.id, bo.state, nm.id,
+        GROUP BY p.id, bo.state, nm.id, bo.booking_date,
                  s.id, s.start_time, s.end_time, s.price,
                  r.id, r.travel_time,
                  st.id, st.name, st.location, et.id, et.name, et.location,
