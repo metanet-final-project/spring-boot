@@ -18,9 +18,6 @@ public class LostServiceImpl implements LostService {
 
     @Override
     public int save(Lost lost) {
-        System.out.println("35135131351");
-        System.out.println(lost);
-        System.out.println("dfadfhafhahf");
         return lostMapper.save(lost);
     }
 
