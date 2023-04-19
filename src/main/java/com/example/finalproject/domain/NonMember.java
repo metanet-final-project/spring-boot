@@ -13,5 +13,6 @@ public class NonMember {
     private Integer id;
     private String phone;
     private Date birth;
+    private String birthStr;
 
 }

@@ -61,4 +61,12 @@ public class NonMemberController {
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @PostMapping("/find/info")
+    public ResponseEntity<Integer> findByInfo(@RequestBody NonMember nonMember) {
+        NonMember getNonMember = nonMemberService.findByInfo(nonMember);
+        return getNonMember != null
+                ? new ResponseEntity<>(getNonMember.getId(), HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }

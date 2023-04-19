@@ -38,6 +38,11 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     @Transactional
     public boolean createDailySchedule() {
+        // 현재 날짜 정보
+//        Date date = new Date();
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//        String dateString = sdf.format(date);
+//        scheduleMapper.findDaily(dateString); // 하루 스케줄 뽑기
         // 수정 필요
         List<Schedule> scheduleList = scheduleMapper.findAll(); // 전체 정보
         scheduleList.forEach((list) -> {

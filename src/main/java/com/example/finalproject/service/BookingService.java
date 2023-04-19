@@ -16,6 +16,8 @@ public interface BookingService {
     public int changeBookingState(Booking booking);
     public int delete(int id);
     public Booking findByBookingId(int id);
+
+    public BookingDTO findTicketByBookingId(int id);
     public List<Booking> findByNonMemberId(NonMember nonMember);
     //public Schedule findAllBySeatId(int scheduled);
     public List<Booking> findSeatByScheduledId(int scheduledId);

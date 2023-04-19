@@ -12,7 +12,5 @@ public interface NonMemberService {
     public int delete(int id);
     public List<NonMember> getList();
     public NonMember findByPhone(String phone);
-
-
-
+    NonMember findByInfo(NonMember nonMember);
 }
