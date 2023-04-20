@@ -71,7 +71,7 @@
                 LEFT JOIN booking bo ON s.id = bo.schedule_id AND bo.state = '결제완료'
                     WHERE s.route_id = #{routeDTO.id} AND TRUNC(s.start_time) = TO_DATE(#{date}, 'YYYY-MM-DD')
                         GROUP BY s.id, s.start_time, s.end_time, s.price, r.id, r.travel_time, st.id, st.name, st.location, et.id, et.name, et.location,
-                            b.id, b.bus_num, b.grade, c.id, c.name, c.phone
+                            b.id, b.bus_num, b.grade, c.id, c.name, c.phone ORDER BY s.start_time ASC
     </select>
 
     <insert id="save" parameterType="com.example.finalproject.domain.Schedule" >

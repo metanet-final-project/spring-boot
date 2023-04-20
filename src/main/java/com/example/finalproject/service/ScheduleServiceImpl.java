@@ -38,31 +38,38 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     @Transactional
     public boolean createDailySchedule() {
-        // 현재 날짜 정보
-//        Date date = new Date();
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//        String dateString = sdf.format(date);
-//        scheduleMapper.findDaily(dateString); // 하루 스케줄 뽑기
-        // 수정 필요
-        List<Schedule> scheduleList = scheduleMapper.findAll(); // 전체 정보
-        scheduleList.forEach((list) -> {
-            Calendar StartTimeCalendar = Calendar.getInstance();
-            Calendar endTimeCalendar = Calendar.getInstance();
-            StartTimeCalendar.setTime(list.getStartTime());
-            endTimeCalendar.setTime(list.getEndTime());
+        try {
+            // 현재 날짜 정보
+            Date date = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String dateString = sdf.format(date);
+            List<Schedule> scheduleList = scheduleMapper.findDaily(dateString); // 하루 스케줄 뽑기
 
-            // Calendar 객체에 하루를 추가 스케줄 결정나면 변경
-            StartTimeCalendar.add(Calendar.DAY_OF_MONTH, 1);
-            endTimeCalendar.add(Calendar.DAY_OF_MONTH, 1);
-            // 변환된 날짜를 Date 객체로 얻기
-            Date updateStartTime = StartTimeCalendar.getTime();
-            Date updateEndTime = endTimeCalendar.getTime();
-            System.out.println(list.toString());
-            list.setId(list.getId() + 200);
-            list.setStartTime(updateStartTime);
-            list.setEndTime(updateEndTime);
-            scheduleMapper.save(list);
-        });
+            Calendar StartTimeCalendar = Calendar.getInstance(); // 현재 시간
+            Calendar endTimeCalendar = Calendar.getInstance(); // 현재 시간
+            scheduleList.forEach((list) -> {
+                // 배차시간에 대한 정보로 변경
+                StartTimeCalendar.setTime(list.getStartTime());
+                endTimeCalendar.setTime(list.getEndTime());
+
+                // 현재 날짜에서 3일 추가
+                StartTimeCalendar.add(Calendar.DATE, 3);
+                endTimeCalendar.add(Calendar.DATE, 3);
+
+                // 변환된 배차 날짜를 Date 형태로 변경
+                Date updateStartTime = StartTimeCalendar.getTime();
+                Date updateEndTime = endTimeCalendar.getTime();
+
+                // 배차 객체 정보 변경
+                list.setId(list.getId() + 1000);
+                list.setStartTime(updateStartTime);
+                list.setEndTime(updateEndTime);
+                scheduleMapper.save(list);
+            });
+            return true;
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
         return false;
     }
 
@@ -74,5 +81,45 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public int save(Schedule schedule) {
         return scheduleMapper.save(schedule);
+    }
+
+    @Override
+    @Transactional
+    public boolean testSchedule() {  // 기본 배차에 2일 배차 추가
+        try {
+            // 현재 날짜 정보
+            Date date = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String dateString = sdf.format(date);
+            List<Schedule> scheduleList = scheduleMapper.findDaily(dateString); // 하루 스케줄 뽑기
+
+            Calendar StartTimeCalendar = Calendar.getInstance(); // 현재 시간
+            Calendar endTimeCalendar = Calendar.getInstance(); // 현재 시간
+
+            scheduleList.forEach((list) -> {
+                // 배차시간에 대한 정보로 변경
+                StartTimeCalendar.setTime(list.getStartTime());
+                endTimeCalendar.setTime(list.getEndTime());
+                for(int i=1; i<=2; i++) {
+                    StartTimeCalendar.add(Calendar.DATE, 1);
+                    endTimeCalendar.add(Calendar.DATE, 1);
+
+                    // 변환된 배차 날짜를 Date 형태로 변경
+                    Date updateStartTime = StartTimeCalendar.getTime();
+                    Date updateEndTime = endTimeCalendar.getTime();
+
+                    // 배차 객체 정보 변경
+                    list.setId(list.getId() + 100);
+                    list.setStartTime(updateStartTime);
+                    list.setEndTime(updateEndTime);
+                    scheduleMapper.save(list);
+                }
+
+            });
+            return true;
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

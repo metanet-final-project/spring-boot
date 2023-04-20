@@ -1,6 +1,7 @@
 package com.example.finalproject.controller;
 
 import com.example.finalproject.domain.Lost;
+import com.example.finalproject.domain.MyRoute;
 import com.example.finalproject.service.LostService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,12 @@ public class LostController {
                 new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-
-
+    @GetMapping("/findById/{id}")
+    public ResponseEntity<Lost> findById(@PathVariable int id){
+        Lost lost = lostService.findById(id);
+        return lost !=null ?
+                new ResponseEntity<>(lost,HttpStatus.OK):
+                new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 
 }

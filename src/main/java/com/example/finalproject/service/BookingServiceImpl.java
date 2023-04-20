@@ -121,5 +121,11 @@ public class BookingServiceImpl implements BookingService{
     @Override
     public List<BookingDTO> findByNonMemberIdToBookingDTO(int nonMemberId) {
         return bookingMapper.findByNonMemberIdToBookingDTO(nonMemberId);
+
+    }
+
+    @Override
+    public int timeOverBooking() {
+        return bookingMapper.timeOverBooking();
     }
 }

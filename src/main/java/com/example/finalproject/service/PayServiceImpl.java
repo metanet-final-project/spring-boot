@@ -92,13 +92,6 @@ public class PayServiceImpl implements  PayService{
     }
 
     @Override
-    public List<PayBookingNonMemListDTO> findNonmemAll() {
-        List<PayBookingNonMemListDTO> payBookingNonMemListList = new ArrayList<>();
-        List<Pay> payList= payMapper.findAll();
-        return null;
-    }
-
-    @Override
     public int updateTotal(int payId, int bookingId) {
         Pay pay = payMapper.getById(payId);
         Booking booking = bookingMapper.findByBookingId(bookingId);
