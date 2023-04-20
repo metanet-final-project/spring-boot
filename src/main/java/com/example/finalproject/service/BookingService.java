@@ -33,4 +33,6 @@ public interface BookingService {
     public List<Booking> findCancelByLoginId(String loginId);
 
     public List<BookingDTO> findByPayIdDTO(int payId);
+
+    public List<BookingDTO> findByNonMemberIdToBookingDTO(int nonMemberId);
 }

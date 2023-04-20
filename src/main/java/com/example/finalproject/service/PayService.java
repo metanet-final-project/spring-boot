@@ -15,5 +15,6 @@ public interface PayService {
     public List<PayBookingDTO> findAll();
     public List<PayBookingNonMemListDTO> findNonmemAll();
     public int updateTotal(int payId, int bookingId);
+    public List<PayBookingDTO> findByNonMemberId(int nonMemberId);
 
 }

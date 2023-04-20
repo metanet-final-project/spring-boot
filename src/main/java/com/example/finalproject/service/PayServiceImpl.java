@@ -4,8 +4,10 @@ import com.example.finalproject.annotation.Trace;
 import com.example.finalproject.domain.Booking;
 import com.example.finalproject.domain.NonMember;
 import com.example.finalproject.domain.Pay;
+import com.example.finalproject.dto.BookingDTO;
 import com.example.finalproject.dto.PayBookingDTO;
 import com.example.finalproject.dto.PayBookingNonMemListDTO;
+import com.example.finalproject.dto.PayDTO;
 import com.example.finalproject.mapper.BookingMapper;
 import com.example.finalproject.mapper.NonMemberMapper;
 import com.example.finalproject.mapper.PayMapper;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -44,12 +47,22 @@ public class PayServiceImpl implements  PayService{
                 bookingMapper.memberSave(booking);
             });
         }else {//비회원
-            nonMemberMapper.insert(nonMember);
-            bookingList.forEach(booking -> {
-                booking.setPayId(pay.getId());
-                booking.setNonMemberId(nonMember.getId());
-                bookingMapper.nonMemberSave(booking);
-            });
+            //기존 비회원 인지 검사
+            NonMember findNonMember = nonMemberMapper.findByInfo(nonMember);
+            if(findNonMember != null){
+                bookingList.forEach(booking -> {
+                    booking.setPayId(pay.getId());
+                    booking.setNonMemberId(findNonMember.getId());
+                    bookingMapper.nonMemberSave(booking);
+                });
+            }else {
+                nonMemberMapper.insert(nonMember);
+                bookingList.forEach(booking -> {
+                    booking.setPayId(pay.getId());
+                    booking.setNonMemberId(nonMember.getId());
+                    bookingMapper.nonMemberSave(booking);
+                });
+            }
         }
         return pay.getId();
     }
@@ -85,18 +98,43 @@ public class PayServiceImpl implements  PayService{
         return null;
     }
 
-
     @Override
     public int updateTotal(int payId, int bookingId) {
         Pay pay = payMapper.getById(payId);
-
         Booking booking = bookingMapper.findByBookingId(bookingId);
         int priceDifference = -booking.getPrice();
-
         pay.setTotalPrice(pay.getTotalPrice() + priceDifference);
-
         return payMapper.updateTotal(pay);
+    }
 
+    @Trace
+    @Transactional
+    @Override
+    public List<PayBookingDTO> findByNonMemberId(int nonMemberId){
+        List<PayBookingDTO> payBookingDTOList = new ArrayList<>();
+        List<BookingDTO> bookingDTOList = bookingMapper.findByNonMemberIdToBookingDTO(nonMemberId);
 
+        HashMap<Integer, List<BookingDTO>> bookingDTOMap = new HashMap<>();
+        for (BookingDTO bookingDTO : bookingDTOList) {
+            if(bookingDTOMap.get(bookingDTO.getPayDTO().getId()) == null){
+                List<BookingDTO> list = new ArrayList<>();
+                list.add(bookingDTO);
+                bookingDTOMap.put(bookingDTO.getPayDTO().getId(), list);
+            } else {
+                bookingDTOMap.get(bookingDTO.getPayDTO().getId()).add(bookingDTO);
+            }
+        }
+        for (List<BookingDTO> value : bookingDTOMap.values()) {
+            PayBookingDTO payBookingDTO = new PayBookingDTO();
+            payBookingDTO.setBookingDTOList(value);
+            payBookingDTO.setId(value.get(0).getPayDTO().getId());
+            payBookingDTO.setBirth(value.get(0).getPayDTO().getBirth());
+            payBookingDTO.setCardNumber(value.get(0).getPayDTO().getCardNumber());
+            payBookingDTO.setCardExpiration(value.get(0).getPayDTO().getCardExpiration());
+            payBookingDTO.setCardPassword(value.get(0).getPayDTO().getCardPassword());
+            payBookingDTO.setTotalPrice(value.get(0).getPayDTO().getTotalPrice());
+            payBookingDTOList.add(payBookingDTO);
+        }
+        return payBookingDTOList;
     }
 }

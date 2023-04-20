@@ -117,4 +117,9 @@ public class BookingServiceImpl implements BookingService{
     public List<BookingDTO> findByPayIdDTO(int payId) {
         return bookingMapper.findByPayIdDTO(payId);
     }
+
+    @Override
+    public List<BookingDTO> findByNonMemberIdToBookingDTO(int nonMemberId) {
+        return bookingMapper.findByNonMemberIdToBookingDTO(nonMemberId);
+    }
 }

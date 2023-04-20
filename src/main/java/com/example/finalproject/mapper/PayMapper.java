@@ -1,5 +1,6 @@
 package com.example.finalproject.mapper;
 
+import com.example.finalproject.domain.NonMember;
 import com.example.finalproject.domain.Pay;
 import org.apache.ibatis.annotations.Mapper;
 

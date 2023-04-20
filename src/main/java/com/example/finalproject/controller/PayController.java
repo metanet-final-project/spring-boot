@@ -42,4 +42,12 @@ public class PayController {
                 : new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @GetMapping("/findByNonMember/{nonMemberId}")
+    public ResponseEntity<List<PayBookingDTO>> findByNonMember(@PathVariable int nonMemberId){
+        List<PayBookingDTO> payBookingList = payService.findByNonMemberId(nonMemberId);
+        return payBookingList != null
+                ? new ResponseEntity<>(payBookingList, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 }
