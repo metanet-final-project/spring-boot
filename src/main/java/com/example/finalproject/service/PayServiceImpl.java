@@ -82,7 +82,7 @@ public class PayServiceImpl implements  PayService{
     public List<PayBookingNonMemListDTO> findNonmemAll() {
         List<PayBookingNonMemListDTO> payBookingNonMemListList = new ArrayList<>();
         List<Pay> payList= payMapper.findAll();
-        List<>
+        return null;
     }
 
 
