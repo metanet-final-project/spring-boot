@@ -34,8 +34,7 @@
                      <![CDATA[
                      (SELECT *
                         FROM lost
-                            WHERE ROWNUM <= 4
-                                ORDER BY find_date desc)]]>
+                            ORDER BY find_date desc)]]>
     </select>
     
 </mapper>
