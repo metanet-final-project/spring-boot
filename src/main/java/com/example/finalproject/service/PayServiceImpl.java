@@ -96,7 +96,11 @@ public class PayServiceImpl implements  PayService{
         Pay pay = payMapper.getById(payId);
         Booking booking = bookingMapper.findByBookingId(bookingId);
         int priceDifference = -booking.getPrice();
-        pay.setTotalPrice(pay.getTotalPrice() + priceDifference);
+        if (pay.getTotalPrice() + priceDifference < 0) {
+            pay.setTotalPrice(0);
+        }else {
+            pay.setTotalPrice(pay.getTotalPrice() + priceDifference);
+        }
         return payMapper.updateTotal(pay);
     }
 
