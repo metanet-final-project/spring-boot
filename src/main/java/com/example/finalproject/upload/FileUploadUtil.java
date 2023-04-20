@@ -19,6 +19,7 @@ public class FileUploadUtil {
 
         try(InputStream inputStream = multipartFile.getInputStream()){
             Path filePath = uploadDirectory.resolve(fileName);
+            System.out.println(filePath);
             Files.copy(inputStream,filePath, StandardCopyOption.REPLACE_EXISTING);
         }catch (IOException ioe){
             throw new IOException("Error saving uploaded file : "+fileName,ioe);
