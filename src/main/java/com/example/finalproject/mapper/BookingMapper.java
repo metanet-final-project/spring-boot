@@ -32,9 +32,7 @@ public interface BookingMapper {
     public List<Booking> findByNonMemPayId(int nonMemberId, int payId);
     public List<Booking> findValidByLoginId(String loginId);
     public List<Booking> findCancelByLoginId(String loginId);
-<<<<<<< HEAD
     public List<BookingDTO> findByNonMemberIdToBookingDTO(int nonMemberId);
-=======
     public int timeOverBooking();
->>>>>>> origin/youngoh
+
 }
