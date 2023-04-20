@@ -11,6 +11,6 @@ public interface NonMemberService {
     public int update(NonMember nonMember);
     public int delete(int id);
     public List<NonMember> getList();
-    public NonMember findByPhone(String phone);
+    public NonMember findById(int id);
     NonMember findByInfo(NonMember nonMember);
 }

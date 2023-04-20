@@ -40,8 +40,8 @@ public class NonMemberServiceImpl implements  NonMemberService{
     }
 
     @Override
-    public NonMember findByPhone(String phone) {
-        return nonMemberMapper.findByPhone(phone);
+    public NonMember findById(int id) {
+        return nonMemberMapper.findById(id);
     }
 
     @Override

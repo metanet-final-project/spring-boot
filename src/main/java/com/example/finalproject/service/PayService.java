@@ -13,6 +13,7 @@ public interface PayService {
     public int insert(PayBookingNonMemListDTO payBookingNonMemListDTO);
     public Pay getById(int id);
     public List<PayBookingDTO> findAll();
+    public List<PayBookingNonMemListDTO> findNonmemAll();
     public int updateTotal(int payId, int bookingId);
 
 }

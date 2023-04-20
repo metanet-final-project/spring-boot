@@ -49,12 +49,12 @@ public class NonMemberController {
                 : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @GetMapping("/findByPhone/{phone}")
-    public ResponseEntity<NonMember> findByPhone(@PathVariable String phone){
+    @GetMapping("/findById/{id}")
+    public ResponseEntity<NonMember> findById(@PathVariable int id){
         try {
-            NonMember findbyphone = nonMemberService.findByPhone(phone);
-            if (findbyphone != null) {
-                return new ResponseEntity<>(findbyphone, HttpStatus.OK);
+            NonMember findById = nonMemberService.findById(id);
+            if (findById != null) {
+                return new ResponseEntity<>(findById, HttpStatus.OK);
             }
         } catch (Exception e) {
             e.getMessage();
