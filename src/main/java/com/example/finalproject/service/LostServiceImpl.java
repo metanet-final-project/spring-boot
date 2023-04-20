@@ -37,7 +37,7 @@ public class LostServiceImpl implements LostService {
     }
 
     @Override
-    public Lost findById(int id) {
+    public Lost findById(int id){
         return lostMapper.findById(id);
     }
 }

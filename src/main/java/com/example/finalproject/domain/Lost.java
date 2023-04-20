@@ -16,5 +16,4 @@ public class Lost {
     private String contents;
     private Date findDate;
     private String fileName;
-
 }

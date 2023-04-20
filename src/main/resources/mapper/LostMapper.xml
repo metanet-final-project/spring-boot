@@ -25,6 +25,10 @@
 <!--        <result column="fileName" property="fileName"/>-->
 <!--    </resultMap>-->
 
+    <select id="findById" resultType="com.example.finalproject.domain.Lost">
+        SELECT * FROM lost where id = #{id}
+    </select>
+
     <select id="findAll" resultType="com.example.finalproject.domain.Lost">
         SELECT * FROM
                      <![CDATA[

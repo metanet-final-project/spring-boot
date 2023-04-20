@@ -1,6 +1,7 @@
 package com.example.finalproject.controller;
 
 import com.example.finalproject.domain.Lost;
+import com.example.finalproject.domain.MyRoute;
 import com.example.finalproject.service.LostService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -78,6 +78,8 @@ public class PayServiceImpl implements  PayService{
         return payBookingList;
     }
 
+
+
     @Override
     public int updateTotal(int payId, int bookingId) {
         Pay pay = payMapper.getById(payId);
