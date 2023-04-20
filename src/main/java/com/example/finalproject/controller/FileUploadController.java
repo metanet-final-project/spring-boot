@@ -65,13 +65,13 @@ public class FileUploadController {
         }
     }
 
-    @GetMapping(value = "/getImage/{filename}", produces = MediaType.IMAGE_PNG_VALUE)
+    @GetMapping(value = "/getImage/{filename}", produces = MediaType.IMAGE_JPEG_VALUE)
     public ResponseEntity<byte[]> getImage(@PathVariable String filename) throws IOException {
         //경로 수정예정
-        Resource resource = new FileSystemResource("C:/Users/Samsung/Pictures/Screenshots/" + filename);
+        Resource resource = new FileSystemResource("C:/Users/COM/Desktop/MetaNet/workspace/final-project/Files-Upload/" + filename);
         Path path = Paths.get(resource.getURI());
         byte[] bytes = Files.readAllBytes(path);
-        return ResponseEntity.ok().contentType(MediaType.IMAGE_PNG).body(bytes);
+        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(bytes);
     }
 
     @PostMapping("/upload")

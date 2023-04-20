@@ -26,7 +26,12 @@
 <!--    </resultMap>-->
 
     <select id="findAll" resultType="com.example.finalproject.domain.Lost">
-        SELECT * FROM lost
+        SELECT * FROM
+                     <![CDATA[
+                     (SELECT *
+                        FROM lost
+                            WHERE ROWNUM <= 4
+                                ORDER BY find_date desc)]]>
     </select>
 
     <select id="findById" resultType="com.example.finalproject.domain.Lost">
