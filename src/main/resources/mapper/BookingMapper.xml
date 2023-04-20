@@ -301,4 +301,12 @@
         select * from booking
             where schedule_id = #{scheduleId} AND state = '결제완료'
     </select>
+
+    <update id="timeOverBooking" >
+        UPDATE booking
+            SET state = '기간만료'
+        <![CDATA[
+            WHERE state = '결제완료' AND booking_date < SYSDATE
+        ]]>
+    </update>
 </mapper>
