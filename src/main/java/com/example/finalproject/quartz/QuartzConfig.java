@@ -30,13 +30,29 @@ public class QuartzConfig implements WebMvcConfigurer {
 
         JobDataMap ctx = new JobDataMap();
         ctx.put(APPLICATION_NAME, applicationContext);
-        JobDetail annualCreateNewYearJob = JobBuilder.newJob(CreateSchedule.class)
+
+        JobDetail timeOverBooking = JobBuilder.newJob(TimeOverBooking.class)
                 .setJobData(ctx)
                 .build();
 
+        JobDetail createSchedule = JobBuilder.newJob(CreateSchedule.class)
+                .setJobData(ctx)
+                .build();
+
+        JobDetail testSchedule = JobBuilder.newJob(TestSchedule.class)
+                .setJobData(ctx)
+                .build();
+
+        // timeOverBooking // 기간만료로 booking 테이블의 상태 변경
+        scheduler.scheduleJob(timeOverBooking, trigger.apply("0 0 0 1/1 * ? *")); // 하루마다 실행
+
         // 스케줄러 크론 표현식으로 주기적 실행
-        //scheduler.scheduleJob(annualCreateNewYearJob, trigger.apply("0 * * * * ?")); // 1초마다 실행
-        //scheduler.scheduleJob(annualCreateNewYearJob, trigger.apply("* * * * * * ?")); // 1분마다 실행
-        //scheduler.scheduleJob(annualCreateNewYearJob, trigger.apply("0 0 0 * * * ?")); // 하루마다 실행
+        scheduler.scheduleJob(createSchedule, trigger.apply("0 0 23 * * ?")); // 매일 정각 23시에 실행
+
+        // 기존 더미데이터 추가 후 한번만 실행하고 주석 처리(이틀치 배차 생성)
+        //scheduler.scheduleJob(testSchedule, trigger.apply("0 0/1 0/1 1/1 * ? *")); // 1분 후 한번 실행
+
+        //scheduler.scheduleJob(createSchedule, trigger.apply("* * * * * * ?")); // 1분마다 실행
+        //scheduler.scheduleJob(createSchedule, trigger.apply("0 0 0 * * * ?")); // 하루마다 실행
     }
 }
