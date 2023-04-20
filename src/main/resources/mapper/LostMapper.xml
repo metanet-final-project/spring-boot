@@ -37,10 +37,5 @@
                             WHERE ROWNUM <= 4
                                 ORDER BY find_date desc)]]>
     </select>
-
-    <select id="findById" resultType="com.example.finalproject.domain.Lost">
-        SELECT * FROM lost WHERE id = #{id}
-    </select>
-
-
+    
 </mapper>
