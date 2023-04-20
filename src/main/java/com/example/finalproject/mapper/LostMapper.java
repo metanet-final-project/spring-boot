@@ -12,5 +12,5 @@ public interface LostMapper {
     public List<Lost> findAll();
     public int update(Lost lost);
     public int delete(int id);
-    //public Lost findById(int id);
+    public Lost findById(int id);
 }

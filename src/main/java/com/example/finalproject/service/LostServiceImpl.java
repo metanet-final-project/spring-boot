@@ -31,4 +31,9 @@ public class LostServiceImpl implements LostService {
     public int delete(int id) {
         return lostMapper.delete(id);
     }
+
+    @Override
+    public Lost findById(int id){
+        return lostMapper.findById(id);
+    }
 }
