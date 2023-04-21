@@ -26,13 +26,11 @@ public class AgeServiceImpl implements AgeService{
 
     @Override
     public int update(Age age) {
-        mapper.update(age);
-        return 0;
+        return mapper.update(age);
     }
 
     @Override
     public int delete(int id) {
-        mapper.delete(id);
-        return 0;
+        return mapper.delete(id);
     }
 }

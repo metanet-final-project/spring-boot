@@ -9,21 +9,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 public interface MemberService {
-    LoginResponse login(LoginRequest request) throws Exception;
+    public LoginResponse login(LoginRequest request) throws Exception;
 
-    int save(Member member) throws Exception;
+    public int save(Member member) throws Exception;
 
-    Member findById(int memberId);
+    public Member findById(int memberId);
 
-    int update(Member member);
+    public int update(Member member);
 
-    int delete(int memberId);
+    public int delete(int memberId);
 
-    Member findByLoginId(String loginId);
+    public Member findByLoginId(String loginId);
 
-    List<Member> findAllMember();
+    public List<Member> findAllMember();
 
-    List<Member> findByName(String name);
+    public List<Member> findByName(String name);
 
 
 
