@@ -44,8 +44,7 @@ public class QuartzConfig implements WebMvcConfigurer {
                 .build();
 
         // timeOverBooking // 기간만료로 booking 테이블의 상태 변경
-        scheduler.scheduleJob(timeOverBooking, trigger.apply("0 0 0 1/1 * ? *")); // 하루마다 실행
-
+        scheduler.scheduleJob(timeOverBooking, trigger.apply("0 0 * * * ? *")); // 매일 정각마다 실행
         // 스케줄러 크론 표현식으로 주기적 실행
         scheduler.scheduleJob(createSchedule, trigger.apply("0 0 23 * * ?")); // 매일 정각 23시에 실행
 
