@@ -12,5 +12,5 @@ public interface NonMemberService {
     public int delete(int id);
     public List<NonMember> getList();
     public NonMember findById(int id);
-    NonMember findByInfo(NonMember nonMember);
+    public NonMember findByInfo(NonMember nonMember);
 }

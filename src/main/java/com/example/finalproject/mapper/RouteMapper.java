@@ -1,8 +1,6 @@
 package com.example.finalproject.mapper;
 
-import com.example.finalproject.domain.MyRoute;
 import com.example.finalproject.domain.Route;
-import com.example.finalproject.dto.RouteDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

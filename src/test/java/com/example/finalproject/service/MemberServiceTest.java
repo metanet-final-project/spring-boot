@@ -76,11 +76,16 @@ public class MemberServiceTest {
     }
 
     @Test
-   void findAllMember(){
+    void findAllMember(){
         List<Member> memberList = memberService.findAllMember();
 
         assertThat(memberList.size()).isGreaterThan(0);
     }
 
 
+    @Test
+    void findByName(){
+        Member member = memberService.findById(1);
+        memberService.findByName(member.getLoginId());
+    }
 }
