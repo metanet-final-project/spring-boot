@@ -16,6 +16,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @EnableAutoConfiguration
 public class SwaggerConfiguration {
+    //http://localhost:8084/swagger-ui.html#
     private final String version = "v1";
 
     private ApiInfo apiInfo() {
@@ -24,6 +25,7 @@ public class SwaggerConfiguration {
                 .description("Swagger 사용 example")
                 .build();
     }
+
     @Bean
     public Docket commonApi() {
         return new Docket(DocumentationType.SWAGGER_2)
