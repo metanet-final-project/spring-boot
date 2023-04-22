@@ -126,6 +126,10 @@ public class BookingServiceImpl implements BookingService{
 
     @Override
     public int timeOverBooking() {
-        return bookingMapper.timeOverBooking();
+        List<Integer> list = bookingMapper.findOverBooking();
+        list.forEach(num -> {
+            bookingMapper.timeOverBooking(num);
+        });
+        return 1;
     }
 }

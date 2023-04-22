@@ -17,7 +17,7 @@ public class TimeOverBooking extends QuartzJobBean {
             bookingService = appCtx.getBean(BookingService.class);
 
             try {
-                if (bookingService.timeOverBooking() >= 0) {
+                if (bookingService.timeOverBooking() == 1) {
                     System.out.println("기간 만료 수정 완료.");
                 }
             } catch (Exception e) {
