@@ -327,12 +327,18 @@
         WHERE bo.non_member_id = #{nonMemberId}
     </select>
 
+    <select id="findOverBooking" resultType="int">
+        <![CDATA[
+            SELECT b.id FROM BOOKING b, schedule s
+                where b.schedule_id = s.id and b.route_id = s.route_id
+                    and b.state = '결제완료' and s.end_time < sysdate
+        ]]>
+    </select>
+
     <update id="timeOverBooking" >
         UPDATE booking
             SET state = '기간만료'
-        <![CDATA[
-            WHERE state = '결제완료' AND booking_date < SYSDATE
-        ]]>
+            WHERE id = #{id}
     </update>
 
 </mapper>
