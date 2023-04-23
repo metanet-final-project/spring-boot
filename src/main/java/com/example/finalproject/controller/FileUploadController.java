@@ -44,8 +44,12 @@ public class FileUploadController {
     }
 
     @PostMapping("/saveUploadFile")
-    public ResponseEntity saveUploadFile(@RequestParam("file") MultipartFile file, @RequestPart(required = true) Lost lost) {
-        String fileName = file.getOriginalFilename();
+    public ResponseEntity saveUploadFile(@RequestParam("file") MultipartFile file, @RequestPart(required = true) Lost lost) throws IOException {
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        long size= file.getSize();
+        String fileCode = FileUploadUtil.saveFile(fileName,file);
+
+        fileName = file.getOriginalFilename();
         String filePath = imageDirectory + File.separator + fileName;
         System.out.println("=========================");
         System.out.println(lost);
