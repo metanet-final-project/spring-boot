@@ -121,7 +121,7 @@
                b.id as "b.id", b.bus_num as "b.bus_num", b.grade as "b.grade",
                c.id as "c.id", c.name as "c.name", c.phone as "c.phone"
         FROM booking bo, pay p, age a, schedule s, route r, terminal st, terminal et, bus b, company c, member m
-        WHERE r.id = s.route_id AND b.id = s.bus_id AND b.company_id = c.id AND r.start_id = st.id AND r.end_id = et.id AND bo.pay_id = p.id AND bo.schedule_id = s.id AND bo.age_id = a.id AND bo.member_id =m.id
+        WHERE r.id = s.route_id AND b.id = s.bus_id AND b.company_id = c.id AND r.start_id = st.id AND r.end_id = et.id AND bo.pay_id = p.id AND bo.schedule_id = s.id AND bo.route_id = s.route_id AND bo.age_id = a.id AND bo.member_id =m.id
     </select>
 
 
@@ -161,7 +161,7 @@
                b.id as "b.id", b.bus_num as "b.bus_num", b.grade as "b.grade",
                c.id as "c.id", c.name as "c.name", c.phone as "c.phone"
         FROM booking bo, pay p, age a, schedule s, route r, terminal st, terminal et, bus b, company c, member m
-        WHERE r.id = s.route_id AND b.id = s.bus_id AND b.company_id = c.id AND r.start_id = st.id AND r.end_id = et.id AND bo.pay_id = p.id AND bo.schedule_id = s.id AND bo.age_id = a.id
+        WHERE r.id = s.route_id AND b.id = s.bus_id AND b.company_id = c.id AND r.start_id = st.id AND r.end_id = et.id AND bo.pay_id = p.id AND bo.schedule_id = s.id  AND bo.route_id = s.route_id AND bo.age_id = a.id
           AND bo.id = #{id}
     </select>
 
@@ -180,33 +180,23 @@
                b.id as "b.id", b.bus_num as "b.bus_num", b.grade as "b.grade",
                c.id as "c.id", c.name as "c.name", c.phone as "c.phone"
         FROM booking bo, pay p, age a, schedule s, route r, terminal st, terminal et, bus b, company c
-        WHERE r.id = s.route_id AND b.id = s.bus_id AND b.company_id = c.id AND r.start_id = st.id AND r.end_id = et.id AND bo.pay_id = p.id AND bo.schedule_id = s.id AND bo.age_id = a.id
+        WHERE r.id = s.route_id AND b.id = s.bus_id AND b.company_id = c.id AND r.start_id = st.id AND r.end_id = et.id AND bo.pay_id = p.id AND bo.schedule_id = s.id  AND bo.route_id = s.route_id AND bo.age_id = a.id
           AND p.id = #{payId}
     </select>
 
     <select id="findByPayIdDTO" resultMap="bookingMap">
-        SELECT bo.id as "bo.id", bo.seat_num as "bo.seat_num", bo.state as "bo.state", bo.price as "bo.price",bo.booking_date as "bo.booking_date",
-        p.id as "p.id", p.card_number as "p.card_number", p.card_expiration as "p.card_expiration", p.card_password as "p.card_password", p.birth as "p.birth", p.totalprice as "p.totalprice",
-        a.id as "a.id", a.name as "a.name",
-        s.id as "s.id", s.start_time as "s.start_time", s.end_time as "s.end_time", s.price as "s.price",
-        r.id as "r.id", r.travel_time as "r.travel_time",
-        st.id as "st.id", st.name as "st.name", st.location as "st.location", et.id as "et.id", et.name as "et.name", et.location as "et.location",
-        b.id as "b.id", b.bus_num as "b.bus_num", b.grade as "b.grade",
-        c.id as "c.id", c.name as "c.name", c.phone as "c.phone",
-        m.id as "m.id", m.login_id as "m.login_id", m.name as "m.name", m.password as "m.password", m.phone as "m.phone", m.role as "m.role", m.email as "m.email", m.birth as "m.birth",
-        nm.id as "nm.id", nm.phone as "nm.phone", nm.birth as "nm.birth"
-        FROM booking bo
-        LEFT JOIN pay p ON bo.pay_id = p.id
-        LEFT JOIN age a ON bo.age_id = a.id
-        LEFT JOIN schedule s ON bo.schedule_id = s.id
-        LEFT JOIN route r ON r.id = s.route_id
-        LEFT JOIN terminal st ON r.start_id = st.id
-        LEFT JOIN terminal et ON r.end_id = et.id
-        LEFT JOIN bus b ON b.id = s.bus_id
-        LEFT JOIN company c ON b.company_id = c.id
-        LEFT JOIN member m ON bo.member_id = m.id
-        LEFT JOIN non_member nm ON bo.non_member_id = nm.id
-        WHERE p.id = #{payId}
+        SELECT bo.id as "bo.id", bo.seat_num as "bo.seat_num",bo.state as "bo.state",bo.price as "bo.price",bo.booking_date as "bo.booking_date",
+               m.login_id as "m.login_id", m.name as "m.name", m.password as "m.password", m.phone as "m.phone", m.role as "m.role", m.email as "m.email", m.birth as "m.birth", nm.phone as "nm.phone", nm.birth as "nm.birth",
+               p.id as "p.id", p.card_number as "p.card_number", p.card_expiration as "p.card_expiration", p.card_password as "p.card_password", p.birth as "p.birth", p.totalprice as "p.totalprice",
+               a.id as "a.id", a.name as "a.name",
+               s.id as "s.id", s.start_time as "s.start_time", s.end_time as "s.end_time", s.price as "s.price",
+               r.id as "r.id", r.travel_time as "r.travel_time",
+               st.id as "st.id", st.name as "st.name", st.location as "st.location", et.id as "et.id", et.name as "et.name", et.location as "et.location",
+               b.id as "b.id", b.bus_num as "b.bus_num", b.grade as "b.grade",
+               c.id as "c.id", c.name as "c.name", c.phone as "c.phone"
+        FROM booking bo, pay p, age a, schedule s, route r, terminal st, terminal et, bus b, company c, non_member nm, member m
+        WHERE r.id = s.route_id AND b.id = s.bus_id AND b.company_id = c.id AND r.start_id = st.id AND r.end_id = et.id AND bo.pay_id = p.id AND bo.schedule_id = s.id AND bo.route_id = s.route_id AND bo.age_id = a.id
+          AND bo.non_member_id = nm.id(+) AND bo.member_id = m.id(+) AND bo.pay_id = #{payId}
     </select>
 
     <select id="findByLoginId" parameterType="String" resultMap="bookingMap">
@@ -219,7 +209,7 @@
                b.id as "b.id", b.bus_num as "b.bus_num", b.grade as "b.grade",
                c.id as "c.id", c.name as "c.name", c.phone as "c.phone"
         FROM booking bo, pay p, age a, schedule s, route r, terminal st, terminal et, bus b, company c, member m
-        WHERE r.id = s.route_id AND b.id = s.bus_id AND b.company_id = c.id AND r.start_id = st.id AND r.end_id = et.id AND bo.pay_id = p.id AND bo.schedule_id = s.id AND bo.age_id = a.id
+        WHERE r.id = s.route_id AND b.id = s.bus_id AND b.company_id = c.id AND r.start_id = st.id AND r.end_id = et.id AND bo.pay_id = p.id AND bo.schedule_id = s.id AND bo.route_id = s.route_id AND bo.age_id = a.id
           AND bo.member_id =m.id AND m.login_id = #{loginId}
         order by bo.booking_date desc
     </select>
@@ -253,6 +243,7 @@
                  JOIN pay p ON bo.pay_id = p.id
                  JOIN age a ON bo.age_id = a.id
                  JOIN schedule s ON bo.schedule_id = s.id
+                 JOIN schedule s ON bo.route_id = s.route_id
                  JOIN route r ON r.id = s.route_id
                  JOIN terminal st ON r.start_id = st.id
                  JOIN terminal et ON r.end_id = et.id
@@ -278,7 +269,7 @@
                b.id as "b.id", b.bus_num as "b.bus_num", b.grade as "b.grade",
                c.id as "c.id", c.name as "c.name", c.phone as "c.phone"
         FROM booking bo, pay p, age a, schedule s, route r, terminal st, terminal et, bus b, company c, non_member nm
-        WHERE r.id = s.route_id AND b.id = s.bus_id AND b.company_id = c.id AND r.start_id = st.id AND r.end_id = et.id AND bo.pay_id = p.id AND bo.schedule_id = s.id AND bo.age_id = a.id
+        WHERE r.id = s.route_id AND b.id = s.bus_id AND b.company_id = c.id AND r.start_id = st.id AND r.end_id = et.id AND bo.pay_id = p.id AND bo.schedule_id = s.id AND bo.route_id = s.route_id AND bo.age_id = a.id
           AND bo.non_member_id = nm.id AND non_member_id = #{nonMemberId} AND bo.state = '결제완료' and p.id=#{payId}
     </select>
 
@@ -292,7 +283,7 @@
                 b.id as "b.id", b.bus_num as "b.bus_num", b.grade as "b.grade",
                 c.id as "c.id", c.name as "c.name", c.phone as "c.phone"
                     FROM booking bo, pay p, age a, schedule s, route r, terminal st, terminal et, bus b, company c, member m
-                        WHERE r.id = s.route_id AND b.id = s.bus_id AND b.company_id = c.id AND r.start_id = st.id AND r.end_id = et.id AND bo.pay_id = p.id AND bo.schedule_id = s.id AND bo.age_id = a.id
+                        WHERE r.id = s.route_id AND b.id = s.bus_id AND b.company_id = c.id AND r.start_id = st.id AND r.end_id = et.id AND bo.pay_id = p.id AND bo.schedule_id = s.id  AND bo.route_id = s.route_id AND bo.age_id = a.id
                         AND bo.member_id =m.id AND bo.state = '예매취소' AND m.login_id = #{loginId}
                         order by bo.booking_date desc
     </select>
@@ -303,28 +294,18 @@
     </select>
 
     <select id="findByNonMemberIdToBookingDTO" resultMap="bookingMap">
-        SELECT bo.id as "bo.id", bo.seat_num as "bo.seat_num", bo.state as "bo.state", bo.price as "bo.price",bo.booking_date as "bo.booking_date",
-        p.id as "p.id", p.card_number as "p.card_number", p.card_expiration as "p.card_expiration", p.card_password as "p.card_password", p.birth as "p.birth", p.totalprice as "p.totalprice",
-        a.id as "a.id", a.name as "a.name",
-        s.id as "s.id", s.start_time as "s.start_time", s.end_time as "s.end_time", s.price as "s.price",
-        r.id as "r.id", r.travel_time as "r.travel_time",
-        st.id as "st.id", st.name as "st.name", st.location as "st.location", et.id as "et.id", et.name as "et.name", et.location as "et.location",
-        b.id as "b.id", b.bus_num as "b.bus_num", b.grade as "b.grade",
-        c.id as "c.id", c.name as "c.name", c.phone as "c.phone",
-        m.id as "m.id", m.login_id as "m.login_id", m.name as "m.name", m.password as "m.password", m.phone as "m.phone", m.role as "m.role", m.email as "m.email", m.birth as "m.birth",
-        nm.id as "nm.id", nm.phone as "nm.phone", nm.birth as "nm.birth"
-        FROM booking bo
-        LEFT JOIN pay p ON bo.pay_id = p.id
-        LEFT JOIN age a ON bo.age_id = a.id
-        LEFT JOIN schedule s ON bo.schedule_id = s.id
-        LEFT JOIN route r ON r.id = s.route_id
-        LEFT JOIN terminal st ON r.start_id = st.id
-        LEFT JOIN terminal et ON r.end_id = et.id
-        LEFT JOIN bus b ON b.id = s.bus_id
-        LEFT JOIN company c ON b.company_id = c.id
-        LEFT JOIN member m ON bo.member_id = m.id
-        LEFT JOIN non_member nm ON bo.non_member_id = nm.id
-        WHERE bo.non_member_id = #{nonMemberId}
+        SELECT bo.id as "bo.id", bo.seat_num as "bo.seat_num",bo.state as "bo.state",bo.price as "bo.price",bo.booking_date as "bo.booking_date", nm.phone as "nm.phone", nm.birth as "nm.birth",
+               p.id as "p.id", p.card_number as "p.card_number", p.card_expiration as "p.card_expiration", p.card_password as "p.card_password", p.birth as "p.birth", p.totalprice as "p.totalprice",
+               a.id as "a.id", a.name as "a.name",
+               s.id as "s.id", s.start_time as "s.start_time", s.end_time as "s.end_time", s.price as "s.price",
+               r.id as "r.id", r.travel_time as "r.travel_time",
+               st.id as "st.id", st.name as "st.name", st.location as "st.location", et.id as "et.id", et.name as "et.name", et.location as "et.location",
+               b.id as "b.id", b.bus_num as "b.bus_num", b.grade as "b.grade",
+               c.id as "c.id", c.name as "c.name", c.phone as "c.phone"
+        FROM booking bo, pay p, age a, schedule s, route r, terminal st, terminal et, bus b, company c, non_member nm
+        WHERE r.id = s.route_id AND b.id = s.bus_id AND b.company_id = c.id AND r.start_id = st.id AND r.end_id = et.id AND bo.pay_id = p.id AND bo.schedule_id = s.id AND bo.route_id = s.route_id AND bo.age_id = a.id
+          AND bo.non_member_id = nm.id AND bo.non_member_id = #{nonMemberId}
+        order by bo.booking_date desc
     </select>
 
     <select id="findOverBooking" resultType="int">
